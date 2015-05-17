@@ -12,20 +12,19 @@
 </ul>
 
 ##Регистрация на тестов потребител
-
-	<ul>
-		<li>
-			1. Стартирайте базата : mongod --dbpath {Project_PATH}/data
-		</li>
-		<li>
-			2. Създайте нов потребител : 
-			<br/>
-			cd {MONGODB_DIR} 
-			<br/>
-			mongo
-			<br/>
-			use testsystem
-			<br/>
-			db.users.insert({ username : "admin", password : "123456", role : "admin"})
-		</li>
-	</ul>
+<ul>
+	<li>
+		1. Стартирайте базата : mongod --dbpath {Project_PATH}/data
+	</li>
+	<li>
+		2. Създайте нов потребител : 
+		<br/>
+		cd {MONGODB_DIR} 
+		<br/>
+		mongo
+		<br/>
+		use testsystem
+		<br/>
+		db.users.insert({ username : "admin", password : "123456", role : "admin"})
+	</li>
+</ul>
