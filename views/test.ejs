@@ -1,0 +1,53 @@
+<section class="content-header">
+  <h1>
+    {{test.name}}
+    <small>You can read somthing new and practice</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ng-href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active"><a ng-href="#/viewAllArticles"><i class="fa fa-book"></i>Articles</a></li>
+    <li class="active"><a ng-href="#/test/{{test.name}}">{{test.name}}</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<div class="inner-page">
+		<div class="box box-primary">
+				<article><%-article %></article>
+
+				<div class="box-body">
+					<div class="questions" ng-show="!testFinished">
+						<div ng-repeat="question in test.questions track by $index">
+							<h4>{{$index + 1}}. {{question.name}}</h4>
+							<div ng-repeat="answer in question.answers" class="radio">
+								<label>
+									<input ng-model="question.choosen" value="{{answer.name}}" type="radio" name="{{question.name}}" id="{{answer.name}}"/>
+								{{answer.name}}
+								</label>
+							</div>
+
+							Choosen: {{ question.choosen }}
+							<hr>
+						</div>
+					</div>
+					<div class="answers" ng-show="testFinished">
+						<div ng-repeat="question in test.questions track by $index">
+							<h4>{{$index + 1}}. {{question.name}}</h4>
+
+							Choosen: {{ question.choosen }}
+							<hr>
+						</div>
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<button class="btn btn-success" ng-click="submitTest()" ng-show="!testFinished">Continue</button>
+
+					<button class="btn btn-warning" ng-click="backToTest()" ng-show="testFinished">Back to test</button>
+
+					<button ng-click="submitExercise(exercise)" class="btn btn-success pull-right" ng-show="testFinished">Submit Test</button>
+				</div>
+		</div>
+	</div>
+</section>

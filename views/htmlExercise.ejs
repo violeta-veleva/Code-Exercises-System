@@ -1,0 +1,61 @@
+<section class="content-header">
+  <h1>
+    {{exercise.name}}
+    <small>Read the instructions and prictice what you have learned</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ng-href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a ng-href="#/"><i class="fa fa-laptop"></i>HTML Exercises</a></li>
+    <li class="active"><a ng-href="#/"></i>{{exercise.name}}</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<div class="inner-page">	
+		<div class="box box-primary">
+			<h2>Exercise {{currentExercise + 1}}</h2>
+				<div class="instructions">
+					<section class="notepaper">
+				    <figure class="quote">
+				      <blockquote >
+				      	{{exercise.exercises[currentExercise].introduction}}
+				        <p><span class="instr-text">Instructions: </span>
+				        {{exercise.exercises[currentExercise].instructions}}</p>
+				      </blockquote>
+				    </figure>
+				  </section>
+				</div>
+			<div class="row">
+				<div class="col-md-4">HTML:</div>
+				<div class="col-md-4">CSS:</div>
+				<div class="col-md-4">&nbsp;</div>
+			</div>
+			<div id="htmlEditor" class="editor">{{exercise.exercises[currentExercise].html}}</div>
+			<textarea id="html-content" ng-model="exercise.exercises[currentExercise].html" ng-change="updatePage()"></textarea>
+
+			
+			<div id="cssEditor" class="editor">{{exercise.exercises[currentExercise].css}}</div>
+			<textarea id="css-content" rows="20" cols="42" ng-model="exercise.exercises[currentExercise].css" ng-change="updatePage()"></textarea>
+
+			<iframe width="480px" height="400px;" id="user-output">
+			</iframe>
+			
+			<div class="exercise-footer clearfix">	
+				<button id="next-exercise" class="btn btn-primary" ng-click="checkIfCurrentExerciseIsCorrect()" ng-class="{disabled : currentExercise === exerciseLen}">Next Exercise</button>
+					
+				<div class="callout callout-success" ng-show="showMsgCorrect">Well done! The Exercise is correct.</div>
+				<div class="callout callout-danger" ng-show="showMsgInCorrect">The Exercise is incorrect. {{exercise.exercises[currentExercise].errorMsg}}</div>
+
+				<button ng-click="submitExercise(exercise)" ng-if="isLoggedIn" class="btn btn-success pull-right">Submit Exercise</button>
+			</div>		
+				
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+			    {{progressBarWidth}}%
+			  </div>
+			</div>
+
+		</div>
+	</div>
+</section>

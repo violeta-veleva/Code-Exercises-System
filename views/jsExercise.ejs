@@ -1,0 +1,63 @@
+<section class="content-header">
+  <h1>
+    {{exercise.name}}
+    <small>Read the instructions and prictice what you have learned</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ng-href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a ng-href="#/"><i class="fa fa-laptop"></i>JS Exercises</a></li>
+    <li class="active"><a ng-href="#/"></i>{{exercise.name}}</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+	<div class="inner-page">	
+		<div class="box box-primary">
+			<h2>Exercise {{currentExercise + 1}}</h2>
+			<div class="instructions">
+				<section class="notepaper">
+			    <figure class="quote">
+			      <blockquote >
+			      	{{exercise.exercises[currentExercise].introduction}}
+			        <p><span class="instr-text">Instructions: </span>
+			        {{exercise.exercises[currentExercise].instructions}}</p>
+			      </blockquote>
+			    </figure>
+			  </section>
+			</div>
+
+			<div id="jsEditor" class="editor">{{exercise.exercises[currentExercise].js}}</div>
+			<textarea id="js-content" ng-model="exercise.exercises[currentExercise].js" ng-change="updatePage()"></textarea>
+
+
+			<!-- create js console and call the script -->
+			<div id="js-console"></div>
+			<script src="javascripts/js-console.js"></script>
+			<script>var console = {}
+				console.log = jsConsole.writeLine;</script>
+
+			<button id="btn-run" class="btn btn-danger">Run Script</button>
+
+			<!-- script for storing the user JS code -->
+			<script id="scriptContainer"></script>
+
+			<div class="exercise-footer clearfix">	
+				<button id="next-exercise" class="btn btn-primary" ng-click="checkIfCurrentExerciseIsCorrect()" ng-class="{disabled : currentExercise === exerciseLen}">Next Exercise</button>
+					
+				<div class="callout callout-success" ng-show="showMsgCorrect">Well done! The Exercise is correct.</div>
+				<div class="callout callout-danger" ng-show="showMsgInCorrect">The Exercise is incorrect. {{exercise.exercises[currentExercise].errorMsg}}</div>
+
+				<button ng-click="submitExercise(exercise)" ng-if="isLoggedIn" class="btn btn-success pull-right">Submit Exercise</button>
+			</div>
+
+
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+			    {{progressBarWidth}}%
+			  </div>
+			</div>
+
+		</div>
+	</div>
+</section>

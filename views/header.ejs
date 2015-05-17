@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="testsystem">
+	<head>
+		<meta charset="UTF-8">
+	    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	    <!-- FontAwesome 4.3.0 -->
+	    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	    <!-- Ionicons 2.0.0 -->
+	    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" /> 
+	     <!-- Date Picker -->
+    	<link href="lib/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/lib/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/angular-notify.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/js-console.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/theme.min.css">	
+	    <link rel="stylesheet" type="text/css" href="/stylesheets/skin-blue.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/inner-page.css">
+		
+	</head>
+	<body class="skin-blue" ng-controller="appController">
+		    <div class="wrapper">
+		      <header class="main-header">
+		        <!-- Logo -->
+		        <a href="#/" class="logo"><b>Code </b>Exercises</a>
+		        <!-- Header Navbar: style can be found in header.less -->
+		        <nav class="navbar navbar-static-top" role="navigation">
+		          <!-- Sidebar toggle button-->
+		          <a href="#"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+		            <span class="sr-only">Toggle navigation</span>
+		          </a>
+		          <div class="navbar-custom-menu">
+		            <ul class="nav navbar-nav">
+		              <!-- User Account: style can be found in dropdown.less -->
+		              <a ng-href="#/register" ng-if="!isLoggedIn" class="btn btn-default btn-reg">Register</a>
+		               <a ng-href="#/login" ng-if="!isLoggedIn" class="btn btn-default btn-reg">Login</a>
+		              <li class="dropdown user user-menu" ng-if="isLoggedIn">
+		                <a href="" target="_self" class="dropdown-toggle" data-toggle="dropdown">
+		                  <span class="hidden-xs">{{username}}</span>
+		                </a>
+		                <ul class="dropdown-menu">
+		                  <!-- User image -->
+		                  <li class="user-header">
+		                    <p>
+		                      {{username}} - {{role}}
+		                    </p>
+		                  </li>
+		                  <!-- Menu Body -->
+		                  <!-- Menu Footer-->
+		                  <li class="user-footer">
+		                    <div class="pull-left">
+		                      <a href="#"  class="btn btn-default btn-flat">My Exercises</a>
+		                    </div>
+		                    <div class="pull-right">
+		                      <a href="#/users/filledExercises"  class="btn btn-default btn-flat">Sign out</a>
+		                    </div>
+		                  </li>
+		                </ul>
+		              </li>
+		            </ul>
+		          </div>
+		        </nav>
+		      </header>
+		      <!-- Left side column. contains the logo and sidebar -->
+		      <aside class="main-sidebar">
+		        <!-- sidebar: style can be found in sidebar.less -->
+		       	<section class="sidebar">
+		          <!-- Sidebar user panel -->
+		          <div class="user-panel" ng-if="isLoggedIn">
+		            <div class="pull-left info">
+		              <p>{{username}}</p>
+		              <i>{{role}}</i>
+		            </div>
+		          </div>
+		          <!-- sidebar menu: : style can be found in sidebar.less -->
+		          <ul class="sidebar-menu">
+		            <li class="active">
+		              <a ng-href="#/" >
+		                <i class="fa fa-dashboard"></i> <span>Home</span>
+		              </a>
+		            </li>
+		            <li>
+		              <a ng-href="#/viewAllHTMLExercises">
+		                <i class="fa fa-laptop"></i> <span>HTML Exercises</span>
+		              </a>
+		            </li>
+		            <li>
+		              <a ng-href="#/viewAllJSExercises">
+		                <i class="fa fa-code"></i> <span>JS Exercises</span>
+		              </a>
+		            </li>
+		            <li>
+		              <a href="#" >
+		                <i class="fa fa-edit"></i> <span>LESS Exercises</span>
+		              </a>
+		            </li>
+		            <li>
+		              <a href="#/viewAllArticles" >
+		                <i class="fa fa-book"></i> <span>Articles</span>
+		              </a>
+		            </li>
+		            <li ng-if="editor">
+		              <a href="#/viewAllUsers" >
+		                <i class="fa fa-user"></i> <span>Users</span>
+		              </a>
+		            </li>
+		            
+		          </ul>
+		        </section>
+		        <!-- /.sidebar -->
+		      </aside>
+
+		      <!-- Content Wrapper. Contains page content -->
+		      <div class="content-wrapper">

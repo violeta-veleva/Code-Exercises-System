@@ -1,0 +1,183 @@
+        <!-- Main content -->
+        <section class="content">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3 id="html-exercise-header">{{htmlExercisesCount}}</h3>
+                  <p>HTML Exercises</p>
+                </div>
+                <div class="icon">
+                  <img src="/img/html.png" alt="html-logo"/>
+                </div>
+                <a href="#"  class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h3>{{jsExercisesCount}}</h3>
+                  <p>JS Exercises</p>
+                </div>
+                <div class="icon">
+                  <img src="/img/js.png" alt="js-logo"/>
+                </div>
+                <a href="#"  class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3>0</h3>
+                  <p>LESS Exercises</p>
+                </div>
+                <div class="icon">
+                  <img src="/img/less.png" alt="less-logo"/>
+                </div>
+                <a href="#"  class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3>{{testsCount}}</h3>
+                  <p>Articles With Tests</p>
+                </div>
+                <div class="icon">
+                   <img src="/img/article.png" alt="Programming articles with tests"/>
+                </div>
+                <a href="#/viewAllArticles"  class="small-box-footer">View all <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-6">
+              <!-- TO DO List -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <i class="ion ion-clipboard"></i>
+                  <h3 class="box-title">HTML Exercises</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="todo-list">
+                    <li ng-repeat="exercise in htmlExercises">
+                      <!-- drag handle -->
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- todo text -->
+                      <span class="text"><a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
+                      <div class="tools" ng-if="editor">
+                        <a ng-href="#/htmlExercise/{{exercise.name}}" ng-click="editExercise(exercise)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="" ng-click="confirmRemovingHTMLExercise(exercise, $index)">
+                          <i class="fa fa-trash-o"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix no-border" ng-if="editor">
+                  <a ng-href="#/addHtmlExercise" title="Add item" class="btn btn-default pull-right">
+                    <i class="fa fa-plus"></i> Add HTML Exercise
+                  </a>
+                </div>
+              </div><!-- /.box -->
+
+
+            </section><!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-6">
+              <!-- TO DO List -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <i class="ion ion-clipboard"></i>
+                  <h3 class="box-title">JS Exercises</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="todo-list">
+                    <li ng-repeat="exercise in jsExercises">
+                      <!-- drag handle -->
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- todo text -->
+                      <span class="text"><a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
+                      <div class="tools" ng-if="editor">
+                        <a ng-href="#/jsExercise/{{exercise.name}}" ng-click="editExercise(exercise)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
+                          <i class="fa fa-trash-o"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix no-border" ng-if="editor">
+                  <a ng-href="#/addJSExercise" title="Add item" class="btn btn-default pull-right">
+                    <i class="fa fa-plus"></i> Add JS Exercise
+                  </a>
+                </div>
+              </div><!-- /.box -->
+
+
+            </section><!-- right col -->
+          </div><!-- /.row (main row) -->
+
+                    <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-6">
+              <!-- TO DO List -->
+              <div class="box box-primary">
+                <div class="box-header">
+                  <i class="ion ion-clipboard"></i>
+                  <h3 class="box-title">Articles With Tests</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="todo-list">
+                    <li ng-repeat="test in tests">
+                      <!-- drag handle -->
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- todo text -->
+                      <span class="text"><a ng-href="#/test/{{test.name}}"> {{test.name}}</a></span>
+                      <div class="tools" ng-if="editor">
+                        <a ng-href="#/edittest/{{test.name}}" ng-click="editTest(test)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="" ng-click="confirmRemovingTest(test, $index)">
+                          <i class="fa fa-trash-o"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix no-border" ng-if="editor">
+                  <a ng-href="#/newtest" title="Add item" class="btn btn-default pull-right">
+                    <i class="fa fa-plus"></i> Add item
+                  </a>
+                </div>
+              </div><!-- /.box -->
+
+
+            </section><!-- /.Left col -->
+             <section class="col-lg-6">
+             </section>
+          </div>
+
+        </section><!-- /.content -->
+
+

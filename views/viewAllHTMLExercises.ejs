@@ -1,0 +1,36 @@
+<section class="content-header">
+  <h1>
+    View All HTML Exercises
+    <small>You can read somthing new and practice</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ng-href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active"><a ng-href="#/viewAllHTMLExercises"><i class="fa fa-laptop"></i>HTML Exercises</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content page-view-all">
+
+  <!-- Default box -->
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">HTML Exercises</h3>
+    </div>
+    <div class="box-body">
+      <ul class="todo-list">
+      	<li ng-repeat="exercise in htmlExercises">
+      		<a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a>
+      	</li>
+      </ul>
+    </div><!-- /.box-body -->
+    <div class="box-footer" ng-if="editor">
+       <button class="btn btn-default">
+        <a ng-href="#/addHtmlExercise" title="Add item">
+          <i class="fa fa-plus"></i> Add HTML Exercise
+        </a>
+      </button>
+    </div>
+  </div><!-- /.box -->
+
+</section><!-- /.content -->

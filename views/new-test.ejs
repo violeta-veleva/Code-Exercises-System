@@ -1,0 +1,71 @@
+<section class="content-header">
+  <h1>
+    Add New Article
+    <small>You should also add a test for practicing</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a ng-href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a ng-href="#/viewAllArticles"><i class="fa fa-book"></i>Articles</a></li>
+    <li class="active"><a ng-href="#/newtest"></i>Add New Article</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+		<div class="inner-page">
+			<div class="box box-primary">
+				<form name="reviewForm" novalidate>
+					<div class="box-body">
+						<div class="form-group">
+							<label for="" class="test-name">Test name</label>
+							<input type="text" ng-model="newTest.name" class="form-control" required />
+						</div>
+
+						<div class="form-group">
+							<label for="article" >Article</label>
+							
+							 <textarea id="editor1" onkeyup="alert('a')" name="editor1" rows="10" cols="80" ng-model="newTest.article"> 
+                    		</textarea>
+
+                    		 
+
+						</div>
+						
+						<div class="form-group">
+							<label for="" class="question-name">Question {{currentExercise + 1}}</label>
+							<input type="text" ng-model="newTest.questions[currentExercise].name" class="form-control question-name-input" required />
+						</div>
+						
+						<button ng-click="addNewAnswer()" class="btn btn-primary">Add new answer</button>
+						<div ng-repeat="answer in newTest.questions[currentExercise].answers track by $index">
+							<div class="form-group">
+								<label for="">Answer : {{$index + 1}}</label>
+								<input type="text" ng-model="answer.name" class="form-control answer-field" required />
+								<button type="button" class="close" ng-click="removeAnswer($index)"><span aria-hidden="true">×</span></button>
+							</div>
+						</div>
+						<p class="no-answers" ng-show="noAnswers">The question should have at least two answers<p>
+					</div><!-- end box body -->
+					<div class="box-footer">
+						<div class="row">
+							<div class="col-md-6">
+								<button ng-click="prevExercise()" class="btn btn-primary" ng-class="{ disabled : currentExercise == 0 }"> Previous question </button>
+							</div>
+							<div class="col-md-6">
+								<button ng-click="nextExercise()" class="btn btn-primary pull-right" ng-class="{ disabled : (currentExercise + 1) == questionsCount }"> Next question </button>	
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<button ng-click="reviewForm.$valid && saveTest()" class="btn btn-warning" ng-class="{ disabled : !reviewForm.$valid || noAnswers }">Save Test</button>
+							</div>
+							<div class="col-md-6">
+								<button ng-click="addNewQuestion()" class="btn btn-success pull-right" ng-class="{ disabled : (questionsCount != (currentExercise + 1)) || !reviewForm.$valid }"> Add new question </button>
+							</div>
+						</div>
+					</div>
+					<div class="msg-success"></div>
+				</form>
+			</div>
+		</div>	
+</section>
