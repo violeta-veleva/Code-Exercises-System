@@ -1,0 +1,31 @@
+{
+  "name": "Code-Exersice-System",
+  "version": "1.0.0",
+  "description": "Дипломна работа на Виолета Велева(ЗИКСМ)",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.10.2",
+    "deferred": "^0.7.2",
+    "ejs": "^2.1.4",
+    "express": "^4.11.1",
+    "express-session": "^1.11.1",
+    "mongodb": "^1.4.34",
+    "mongoose": "^3.8.21",
+    "mongoskin": "^1.4.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/violeta-veleva/Code-Exercises-System.git"
+  },
+  "author": "Violeta Veleva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/violeta-veleva/Code-Exercises-System/issues"
+  },
+  "homepage": "https://github.com/violeta-veleva/Code-Exercises-System"
+}
