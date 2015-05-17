@@ -14,6 +14,9 @@ testsystem.factory('TestService',function($http){
 			findTestByName : function(name){
 				return $http.get('/test/' + name);
 			},
+			findUsersTests : function(){
+				return $http.get('/users/getUsersTests');
+			},
 			removeTest : function(id){
 				return $http({
 					url : "/users/removeTest",
@@ -49,7 +52,15 @@ testsystem.factory('TestService',function($http){
 			},
 			createEditor : function(){
         		CKEDITOR.replace('editor1');
-        	}
-    	
+        	},
+        	submitExercise : function(test){
+				return $http({
+					url : "/users/submitTestExercise",
+					method : "POST",
+					data: {
+						test : test
+					}
+				})
+			}
 		}
 });

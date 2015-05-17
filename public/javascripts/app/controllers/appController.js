@@ -6,14 +6,6 @@ testsystem.controller('appController', function($scope, AppService, $timeout, HT
 		$scope.editor = ($scope.role == 'admin' || $scope.role == 'teacher');
 	});
 
-	HTMLExerciseService.findUsersHTMLExercises().success(function(data){
-		console.log("APP DATA" + data);
-		
-		for(var i = 0; i<data.length; i++){
-			console.log(data[i].htmlExercise.name);
-		}
-	});
-
 	$(document).ready(function(){
 		$('.sidebar-menu li').click(function(){
 			$('.sidebar-menu li').removeClass('active');

@@ -50,10 +50,10 @@
 		                  <!-- Menu Footer-->
 		                  <li class="user-footer">
 		                    <div class="pull-left">
-		                      <a href="#"  class="btn btn-default btn-flat">My Exercises</a>
+		                      <a ng-href="#/myExercises"  class="btn btn-default btn-flat">My Exercises</a>
 		                    </div>
 		                    <div class="pull-right">
-		                      <a href="#/users/filledExercises"  class="btn btn-default btn-flat">Sign out</a>
+		                      <a href="#"  class="btn btn-default btn-flat">Sign out</a>
 		                    </div>
 		                  </li>
 		                </ul>
@@ -91,11 +91,6 @@
 		              </a>
 		            </li>
 		            <li>
-		              <a href="#" >
-		                <i class="fa fa-edit"></i> <span>LESS Exercises</span>
-		              </a>
-		            </li>
-		            <li>
 		              <a href="#/viewAllArticles" >
 		                <i class="fa fa-book"></i> <span>Articles</span>
 		              </a>
@@ -105,7 +100,11 @@
 		                <i class="fa fa-user"></i> <span>Users</span>
 		              </a>
 		            </li>
-		            
+		            <li ng-if="isLoggedIn">
+		              <a href="#/myExercises" >
+		                <i class="fa fa-mortar-board"></i> <span>My Exercises</span>
+		              </a>
+		            </li>
 		          </ul>
 		        </section>
 		        <!-- /.sidebar -->

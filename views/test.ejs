@@ -26,8 +26,6 @@
 								{{answer.name}}
 								</label>
 							</div>
-
-							Choosen: {{ question.choosen }}
 							<hr>
 						</div>
 					</div>
@@ -42,11 +40,11 @@
 				</div>
 
 				<div class="box-footer">
-					<button class="btn btn-success" ng-click="submitTest()" ng-show="!testFinished">Continue</button>
+					<button class="btn btn-success" ng-click="continueToSubmiting()" ng-show="!testFinished">Continue</button>
 
 					<button class="btn btn-warning" ng-click="backToTest()" ng-show="testFinished">Back to test</button>
 
-					<button ng-click="submitExercise(exercise)" class="btn btn-success pull-right" ng-show="testFinished">Submit Test</button>
+					<button ng-if="isLoggedIn" ng-click="submitExercise(test)" class="btn btn-success pull-right" ng-show="testFinished">Submit Test</button>
 				</div>
 		</div>
 	</div>

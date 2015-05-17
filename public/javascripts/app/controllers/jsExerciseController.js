@@ -1,8 +1,17 @@
-testsystem.controller('jsExerciseController', function($scope, $routeParams, $timeout, JSExerciseService){
+testsystem.controller('jsExerciseController', function($scope, $routeParams, $timeout, 
+	JSExerciseService, notify){
 	JSExerciseService.findJSExerciseByName($routeParams.name).success(function(data){
 		$scope.exercise = data;
 
-		$scope.currentExercise = 0;
+		(function(){
+			if($scope.exercise.currentExercise == 'undefined' || $scope.exercise.currentExercise == undefined){
+				$scope.currentExercise = 0;
+			}
+			else{
+				$scope.currentExercise = $scope.exercise.currentExercise;
+			}
+		})();
+		
 		$scope.exerciseLen = $scope.exercise.exercises.length;
 		
 		$scope.progressbar = function(){
@@ -16,6 +25,15 @@ testsystem.controller('jsExerciseController', function($scope, $routeParams, $ti
 
 
 		$timeout(function(){
+			 $scope.submitExercise = function(jsExercise) {
+				// get editor's value
+				$scope.exercise.exercises[$scope.currentExercise].js = JSEditor.getSession().getValue();
+
+				JSExerciseService.submitExercise(jsExercise).success(function(data){
+					notify(data);
+				});
+			};
+
 			$scope.checkIfCurrentExerciseIsCorrect = function(){
 				$scope.exercise.exercises[$scope.currentExercise].js = JSEditor.getSession().getValue();
 				$scope.isCorrect = false;

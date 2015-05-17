@@ -10,6 +10,9 @@ testsystem.factory('JSExerciseService',function($http){
 		findAllJSExercises : function(){
 			return $http.get('/allJSExercises')
 		},
+		findUsersJSExercises : function(){
+			return $http.get('/users/getUsersJSExercises');
+		},
 		findJSExerciseByName : function(name){
 			return $http.get('/jsExercise/' + name);
 		},
@@ -19,6 +22,15 @@ testsystem.factory('JSExerciseService',function($http){
 				method : "POST",
 				data : {
 					id : id
+				}
+			})
+		},
+		submitExercise : function(jsExercise){
+			return $http({
+				url : "/users/submitJSExercise",
+				method : "POST",
+				data: {
+					jsExercise : jsExercise
 				}
 			})
 		},

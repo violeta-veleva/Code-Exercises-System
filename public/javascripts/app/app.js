@@ -18,7 +18,7 @@ testsystem.config(function($routeProvider) {
       controller : "viewAllUsers"
    }).when('/myExercises',{
       templateUrl : "/users/filledExercises",
-      //controller : "allFilledExercises"
+      controller : "myFilledExercises"
    }).when('/test/:name',{
    	templateUrl : function(params){
          return '/test?name=' + params.name + "&R=" + Math.random();

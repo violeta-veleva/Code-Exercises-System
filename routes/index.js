@@ -58,32 +58,6 @@ router.post('/login', function(req,res){
 	})
 })
 
-function autoComplete(term) {
-    var def = Deferred();
-
-    req.db.collection('tests').find({ name : new RegExp(term, 'i')}).limit(5).toArray(function(err, tests){
-       if(err) throw err;
-       def.resolve(tests);
-    });
-
-    return def.promise();
-};
-
-router.get('/autocomplete', function(req,res){
-
-    autoComplete(req.param('term')).done(function(tests){
-        var items = [];
-        tests.forEach(function(test, index){
-            res.render('searchResults.ejs',{test : test }, function(err,html){
-                items.push(html);
-
-            });
-        });
-        res.send(items);
-    });
-
-});
-
 router.get('/viewAllArticles', function(req,res){
 	res.render("viewAllArticles.ejs", {title: 'View All Articles'});
 });
@@ -152,16 +126,25 @@ router.get('/jsExercise', function(req, res){
 	});
 });
 
-router.get('/test/:name', function(req,res){
-	req.db.collection('tests').findOne({name: req.params.name}, function(err, test){
-		if (err) throw err;
-		res.send(test);
-	})
-});
-
 function getExerciseByName(db,collection, name) {
 	var def = Deferred();
 	db.collection('htmlExercises').findOne({name : name}, function(err,exercise){
+		def.resolve(exercise);
+	});
+	return def.promise();
+}
+
+function getJSExerciseByName(db,collection, name) {
+	var def = Deferred();
+	db.collection('jsExercises').findOne({name : name}, function(err,exercise){
+		def.resolve(exercise);
+	});
+	return def.promise();
+}
+
+function getTestByName(db,collection, name) {
+	var def = Deferred();
+	db.collection('tests').findOne({name : name}, function(err,exercise){
 		def.resolve(exercise);
 	});
 	return def.promise();
@@ -194,19 +177,88 @@ function getHtmlExercise(db,ObjectID, user, name) {
 	return def.promise();
 }
 
+function getJSExercise(db,ObjectID, user, name) {
+	var def = Deferred();
+	console.log("user", user);
+	if(user) {
+		db.collection('filledJSExercises').findOne(
+			{
+				userId : user._id.toString(), 
+				"jsExercise.name" : name 
+			},
+		 function(err, exercise){
+		 	console.log(exercise);
+			if(!exercise) {
+				getJSExerciseByName(db,'jsExercises', name).done(function(exercise){
+					def.resolve(exercise);
+				});
+			} else {
+				def.resolve(exercise.jsExercise);
+			}
+		});
+	} else {
+		getJSExerciseByName(db,'jsExercises', name).done(function(exercise){
+			def.resolve(exercise);
+		});
+	}
+	return def.promise();
+}
+
+function getTest(db, ObjectID, user, name) {
+	var def = Deferred();
+	console.log("user", user);
+	if(user) {
+		db.collection('filledTests').findOne(
+			{
+				userId : user._id.toString(), 
+				"test.name" : name 
+			},
+		 function(err, exercise){
+		 	console.log(exercise);
+			if(!exercise) {
+				getExerciseByName(db,'tests', name).done(function(exercise){
+					def.resolve(exercise);
+				});
+			} else {
+				def.resolve(exercise.test);
+			}
+		});
+	} else {
+		getTestByName(db,'tests', name).done(function(exercise){
+			def.resolve(exercise);
+		});
+	}
+	return def.promise();
+}
+
 router.get('/htmlExercise/:name', function(req,res){
 	//console.log("htmlExercise")
-	getHtmlExercise(req.db,req.ObjectID, req.session.loggedIn, req.params.name).done(function(exercise){
-		//console.log(exercise);	
+	getHtmlExercise(req.db,req.ObjectID, req.session.loggedIn, req.params.name)
+	.done(function(exercise){	
 		res.send(exercise);
 	});
 });
 
 router.get('/jsExercise/:name', function(req,res){
-	req.db.collection('jsExercises').findOne({name: req.params.name}, function(err, exercise){
-		if (err) throw err;
+	//req.db.collection('jsExercises').findOne({name: req.params.name}, function(err, exercise){
+		//if (err) throw err;
+		//res.send(exercise);
+	//})
+	getJSExercise(req.db, req.ObjectID, req.session.loggedIn, req.params.name)
+	.done(function(exercise){	
 		res.send(exercise);
-	})
+	});
+});
+
+router.get('/test/:name', function(req,res){
+	//req.db.collection('tests').findOne({name: req.params.name}, function(err, test){
+		//if (err) throw err;
+		//res.send(test);
+	//})
+	getTest(req.db, req.ObjectID, req.session.loggedIn, req.params.name)
+	.done(function(test){	
+		res.send(test);
+	});
 });
 
 
