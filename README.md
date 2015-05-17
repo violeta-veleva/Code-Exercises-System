@@ -7,7 +7,7 @@
 		<a href="https://nodejs.org/download" target="_blank">Node JS</a>
 	</li>
 	<li>
-		<a href="https://www.mongodb.org/downloads">Mongo DB</a>
+		<a href="https://www.mongodb.org/downloads" target="_blank">Mongo DB</a>
 	</li>
 </ul>
 
@@ -28,3 +28,7 @@
 		db.users.insert({ username : "admin", password : "123456", role : "admin"})
 	</li>
 </ul>
+##Инсталация на node_modules
+cd {Project_PATH}
+<br/>
+npm install -save
