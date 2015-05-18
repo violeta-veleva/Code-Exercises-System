@@ -17,10 +17,10 @@ Master Thesis - Violeta Veleva
 		1. In the main project folder(the same folder as the "README" file) create a new folder "data"
 	</li>
 	<li>
-		1. Start the database : mongod --dbpath {Project_PATH}/data
+		2. Start the database : mongod --dbpath {Project_PATH}/data
 	</li>
 	<li>
-		2. Create new user : 
+		3. Create new user : 
 		<br/>
 		cd {MONGODB_DIR} 
 		<br/>

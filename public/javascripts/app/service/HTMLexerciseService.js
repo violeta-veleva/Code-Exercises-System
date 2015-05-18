@@ -25,6 +25,15 @@ testsystem.factory('HTMLExerciseService',function($http){
 				}
 			})
 		},
+		editHTMLExercise : function(htmlExercise){
+			return $http({
+				url : "/users/saveEditedHTMLExercise",
+				method : "POST",
+				data : {
+					htmlExercise : htmlExercise
+				}
+			})
+		},
 		submitExercise : function(htmlExercise){
 			return $http({
 				url : "/users/submitHTMLExercise",

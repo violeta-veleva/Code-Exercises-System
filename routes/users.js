@@ -186,6 +186,10 @@ router.get('/addHtmlExercise', function(req,res){
 	res.render('addHtmlExercise.ejs', {title: 'Add New HTML Exericise'});
 });
 
+router.get('/editHtmlExercise', function(req,res){
+	res.render('editHtmlExercise.ejs', {title: 'Edit HTML Exericise'});
+});
+
 router.get('/addJSExercise', function(req,res){
 	res.render('addJSExercise.ejs', {title: 'Add New JS Exericise'});
 });
@@ -263,6 +267,17 @@ router.post('/saveEditedTest', function(req, res){
 		update({_id: new req.ObjectID(test._id)}, {$set:{name:test.name, article:test.article, questions:test.questions}}, function(err, result) {
 	    if(err) throw err;
 	    res.send('The test was updated');
+	});
+})
+
+router.post('/saveEditedHTMLExercise', function(req, res){
+	var htmlExercise = req.body.htmlExercise;
+	console.log(htmlExercise);
+
+	req.db.collection('htmlExercises').
+		update({_id: new req.ObjectID(htmlExercise._id)}, {$set:{name:htmlExercise.name, htmlExercise:htmlExercise.exercises}}, function(err, result) {
+	    if(err) throw err;
+	    res.send('The exercise was updated');
 	});
 })
 

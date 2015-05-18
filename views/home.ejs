@@ -56,17 +56,19 @@
                 <div class="box-body">
                   <ul class="todo-list">
                     <li ng-repeat="exercise in htmlExercises">
-                      <!-- drag handle -->
+                      <!-- icon -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-                      <!-- todo text -->
+                      <!-- list -->
                       <span class="text"><a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
                       <div class="tools" ng-if="editor">
-                        <a ng-href="#/htmlExercise/{{exercise.name}}" ng-click="editExercise(exercise)">
+                        <!-- TODO : EDIT
+                        <a ng-href="#/editHtmlExercise/{{exercise.name}}">
                           <i class="fa fa-edit"></i>
                         </a>
+                      -->
                         <a href="" ng-click="confirmRemovingHTMLExercise(exercise, $index)">
                           <i class="fa fa-trash-o"></i>
                         </a>
@@ -83,9 +85,8 @@
 
 
             </section><!-- /.Left col -->
-            <!-- right col (We are only adding the ID to make the widgets sortable)-->
             <section class="col-lg-6">
-              <!-- TO DO List -->
+              <!-- list -->
               <div class="box box-primary">
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
@@ -94,17 +95,19 @@
                 <div class="box-body">
                   <ul class="todo-list">
                     <li ng-repeat="exercise in jsExercises">
-                      <!-- drag handle -->
+                      <!-- icon -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-                      <!-- todo text -->
+                      <!-- list -->
                       <span class="text"><a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
                       <div class="tools" ng-if="editor">
-                        <a ng-href="#/jsExercise/{{exercise.name}}" ng-click="editExercise(exercise)">
+                        <!--TODO : EDIT
+                        <a ng-href="#/jsExercise/{{exercise.name}}">
                           <i class="fa fa-edit"></i>
                         </a>
+                        -->
                         <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
                           <i class="fa fa-trash-o"></i>
                         </a>
@@ -126,7 +129,7 @@
                     <div class="row">
             <!-- Left col -->
             <section class="col-lg-6">
-              <!-- TO DO List -->
+              <!-- List -->
               <div class="box box-primary">
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
@@ -135,12 +138,12 @@
                 <div class="box-body">
                   <ul class="todo-list">
                     <li ng-repeat="test in tests">
-                      <!-- drag handle -->
+                      <!-- icon -->
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
-                      <!-- todo text -->
+                      <!-- list -->
                       <span class="text"><a ng-href="#/test/{{test.name}}"> {{test.name}}</a></span>
                       <div class="tools" ng-if="editor">
                         <a ng-href="#/edittest/{{test.name}}" ng-click="editTest(test)">
