@@ -1,7 +1,7 @@
 # Code-Exercises-System
-Дипломна работа на Виолета Велева(ЗИКСМ)
+Master Thesis - Violeta Veleva 
 
-##Технологии
+##Technologies used:
 <ul>
 	<li>
 		<a href="https://nodejs.org/download" target="_blank">Node JS</a>
@@ -11,13 +11,16 @@
 	</li>
 </ul>
 
-##Регистрация на тестов потребител
+##How to start the system on your computer:
 <ul>
 	<li>
-		1. Стартирайте базата : mongod --dbpath {Project_PATH}/data
+		1. In the main project folder(the same folder as the "README" file) create a new folder "data"
 	</li>
 	<li>
-		2. Създайте нов потребител : 
+		1. Start the database : mongod --dbpath {Project_PATH}/data
+	</li>
+	<li>
+		2. Create new user : 
 		<br/>
 		cd {MONGODB_DIR} 
 		<br/>
@@ -28,7 +31,7 @@
 		db.users.insert({ username : "admin", password : "123456", role : "admin"})
 	</li>
 </ul>
-##Инсталация на node_modules
+##Installation of node_modules
 cd {Project_PATH}
 <br/>
 npm install -save
