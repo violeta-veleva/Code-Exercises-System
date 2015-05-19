@@ -4,7 +4,7 @@ testsystem.factory('JSExerciseService',function($http){
 			return $http({
 				url: '/users/saveJSExercise',
 				method: 'POST',
-				data: jsExercise
+				data: jsExercise 
 			})
 		},
 		findAllJSExercises : function(){
