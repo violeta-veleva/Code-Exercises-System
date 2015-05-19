@@ -43,8 +43,5 @@ db.collection('users').find().toArray(function(err, users){
 			})
 	}
 });
-console.log('Test System is running...');
-app.listen(3000, function(){
-	console.log("PORT : 3000")
-});
+
 
