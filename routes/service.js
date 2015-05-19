@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost:27017/testsystem').connection;
+var db = mongoose.connect('mongodb://heroku_app37016502:p1sbe9ln8etukcd8eegchpk5jd@ds031852.mongolab.com:31852/heroku_app37016502').connection;
 var ObjectID = mongoose.ObjectID;
 var Deferred = require('Deferred');
 
