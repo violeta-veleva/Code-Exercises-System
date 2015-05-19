@@ -11,6 +11,7 @@ var users = require('./routes/users.js');
 var session = require('express-session');
 
 app.set('view engine', 'ejs');
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(path.join(__dirname, 'public')));
 var bodyParser = require('body-parser');
@@ -43,5 +44,8 @@ db.collection('users').find().toArray(function(err, users){
 			})
 	}
 });
-
+console.log('Test System is running...');
+app.listen(app.get('port'), function(){
+	console.log("PORT : " + app.get('port'));
+});
 
