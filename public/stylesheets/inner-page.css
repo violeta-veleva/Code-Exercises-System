@@ -68,7 +68,7 @@
   .inner-page #html-content, .inner-page #css-content, .inner-page #js-content {
     display: none; }
   .inner-page .editor {
-    width: 300px;
+    width: 250px;
     height: 400px;
     display: inline-block;
     margin-right: 8px; }

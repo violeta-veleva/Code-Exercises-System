@@ -49,7 +49,8 @@
 					</div>
 					<div class="form-group">
 						<label for="exercise-check">Check function: </label>
-						<i>Write an expression that evaluates to true or false. For exapmle : <pre>($('#user-output').contents().find('img').length > 0) && ($('#user-output').contents().find('img').attr('src')!='https://coolrain44.files.wordpress.com/2009/06/tropisland.jpg')
+						<i>Write an function that returns true or false. For exapmle : 
+							<pre>function(){ if ( (typeof sum != 'undefined') && (sum(4, 3)===7) ){ return true } else{ return false } }
 						</pre> </i>
 						<textarea rows="5" ng-model="exercise.exercises[currentExercise].checkFunction" id="exercise-check" class="form-control" required></textarea>
 					</div>

@@ -35,3 +35,4 @@ Master Thesis - Violeta Veleva
 cd {Project_PATH}
 <br/>
 npm install -save
+

@@ -216,7 +216,7 @@ function getTest(db, ObjectID, user, name) {
 		 function(err, exercise){
 		 	console.log(exercise);
 			if(!exercise) {
-				getExerciseByName(db,'tests', name).done(function(exercise){
+				getTestByName(db,'tests', name).done(function(exercise){
 					def.resolve(exercise);
 				});
 			} else {
