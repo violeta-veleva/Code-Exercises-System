@@ -45,25 +45,6 @@ testsystem.factory('JSExerciseService',function($http){
 		        $('#js-content').val(text);
 	        });
 	        return jsEditor;
-		},
-		runScript : function() {
-
-			var el = document.getElementById('js-content');
-			var scriptText = el.value;
-			var oldScript = document.getElementById('scriptContainer');
-			var newScript;
-
-			if (oldScript) {
-			  oldScript.parentNode.removeChild(oldScript);
-			}
-
-			newScript = document.createElement('script');
-			newScript.id = 'scriptContainer';
-			newScript.text = el.value;
-			document.body.appendChild(newScript);
-
-			//enable the console
-			console.log = jsConsole.writeLine;
-		} 
+		}
 	}
 })
