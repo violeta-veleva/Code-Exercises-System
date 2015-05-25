@@ -17,7 +17,7 @@
 				<article><%-article %></article>
 
 				<div class="box-body">
-					<div class="questions" ng-show="!testFinished">
+					<div class="questions" ng-show="!testFinished && !testSubmited">
 						<div ng-repeat="question in test.questions track by $index">
 							<h4>{{$index + 1}}. {{question.name}}</h4>
 							<div ng-repeat="answer in question.answers" class="radio">
@@ -29,20 +29,35 @@
 							<hr>
 						</div>
 					</div>
-					<div class="answers" ng-show="testFinished">
+					<div class="answers" ng-show="testFinished && !testSubmited">
 						<div ng-repeat="question in test.questions track by $index">
 							<h4>{{$index + 1}}. {{question.name}}</h4>
-
-							Choosen: {{ question.choosen }}
+							<p>Choosen: {{ question.choosen }}</p>
+							<hr>
+						</div>
+					</div>
+					<div class="answers" ng-show="testSubmited">
+						<div class="row">
+							<div class="col-md-6">
+								<h2>Your points are: <b>{{test.points}}</b></h2>
+							</div>
+							<div class="col-md-6">
+								<h2>Total: <b>{{total}}</b></h2>
+							</div>
+						</div>
+						<div ng-repeat="question in test.questions track by $index">
+							<h4>{{$index + 1}}. {{question.name}}</h4>
+							<p ng-class="{ 'red' : question.choosen !== question.rightAnswer,  'green' : question.choosen === question.rightAnswer}">Choosen: {{ question.choosen }}</p>
+							<p>Right answer: {{question.rightAnswer}}</p>
 							<hr>
 						</div>
 					</div>
 				</div>
 
-				<div class="box-footer">
+				<div class="box-footer clearfix">
 					<button class="btn btn-success" ng-click="continueToSubmiting()" ng-show="!testFinished">Continue</button>
 
-					<button class="btn btn-warning" ng-click="backToTest()" ng-show="testFinished">Back to test</button>
+					<button class="btn btn-warning" ng-click="backToTest()" ng-show="testFinished && !testSubmited">Back to test</button>
 
 					<button ng-if="isLoggedIn" ng-click="submitExercise(test)" class="btn btn-success pull-right" ng-show="testFinished">Submit Test</button>
 				</div>

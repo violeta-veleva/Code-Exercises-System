@@ -22,13 +22,9 @@
 						</div>
 
 						<div class="form-group">
-							<label for="article" >Article</label>
-							
+							<label for="article" >Article</label>			
 							 <textarea id="editor1" onkeyup="alert('a')" name="editor1" rows="10" cols="80" ng-model="newTest.article"> 
                     		</textarea>
-
-                    		 
-
 						</div>
 						
 						<div class="form-group">
@@ -44,7 +40,17 @@
 								<button type="button" class="close" ng-click="removeAnswer($index)"><span aria-hidden="true">×</span></button>
 							</div>
 						</div>
+
 						<p class="no-answers" ng-show="noAnswers">The question should have at least two answers<p>
+
+						<div class="form-group">
+							<label for="rightAnswer" class="question-name">Right answer</label>
+							
+							<select id="rightAnswer" ng-model="newTest.questions[currentExercise].rightAnswer" class="form-control answer-field" required>
+								<option ng-repeat="answer in newTest.questions[currentExercise].answers track by $index">{{answer.name}}</option>
+							</select>
+						</div>
+
 					</div><!-- end box body -->
 					<div class="box-footer">
 						<div class="row">

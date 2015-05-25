@@ -52,6 +52,9 @@ testsystem.config(function($routeProvider) {
    }).when('/editHtmlExercise/:name',{
       templateUrl : '/users/editHtmlExercise',
       controller : 'editHtmlExerciseCtrl'
+   }).when('/editJSExercise/:name',{
+      templateUrl : '/users/editJSExercise',
+      controller : 'editJSExerciseCtrl'
    }).when('/addJSExercise',{
       templateUrl : '/users/addJSExercise',
       controller : 'addJSExerciseController'

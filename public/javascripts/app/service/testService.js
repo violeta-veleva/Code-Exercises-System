@@ -39,7 +39,8 @@ testsystem.factory('TestService',function($http){
 				var newQuestion = {
 					name : "",
 					answers : [],
-					choosen : ''
+					choosen : "",
+					rightAnswer : ""
 				}
 				newQuestion.answers.push(this.createNewAnswer());
 

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var service = require('./service.js');
 
-function loginFilter(req,res,next){
+function loginFilter(req, res, next){
 	if(!req.session.loggedIn || (req.session.loggedIn.role != 'teacher' && req.session.loggedIn.role != 'admin')) {
 		res.render('login.ejs');
 	} else {
@@ -13,6 +13,12 @@ function loginFilter(req,res,next){
 router.get('/*', loginFilter);
 
 router.post('/*', loginFilter);
+
+router.get('/logout', function(req, res){
+	req.session.destroy(function(err){
+		res.redirect("/");
+	});
+})
 
 router.get('/getUsersHTMLExercises', function(req, res){
 	var query = { userId : req.session.loggedIn._id.toString() }
@@ -190,6 +196,10 @@ router.get('/editHtmlExercise', function(req,res){
 	res.render('editHtmlExercise.ejs', {title: 'Edit HTML Exericise'});
 });
 
+router.get('/editJSExercise', function(req,res){
+	res.render('editJSExercise.ejs', {title: 'Edit JS Exericise'});
+});
+
 router.get('/addJSExercise', function(req,res){
 	res.render('addJSExercise.ejs', {title: 'Add New JS Exericise'});
 });
@@ -275,7 +285,18 @@ router.post('/saveEditedHTMLExercise', function(req, res){
 	console.log(htmlExercise);
 
 	req.db.collection('htmlExercises').
-		update({_id: new req.ObjectID(htmlExercise._id)}, {$set:{name:htmlExercise.name, htmlExercise:htmlExercise.exercises}}, function(err, result) {
+		update({_id: new req.ObjectID(htmlExercise._id)}, {$set:{name:htmlExercise.name, exercises:htmlExercise.exercises}}, function(err, result) {
+	    if(err) throw err;
+	    res.send('The exercise was updated');
+	});
+})
+
+router.post('/saveEditedJSExercise', function(req, res){
+	var jsExercise = req.body.jsExercise;
+	console.log(jsExercise);
+
+	req.db.collection('jsExercises').
+		update({_id: new req.ObjectID(jsExercise._id)}, {$set:{name:jsExercise.name, exercises:jsExercise.exercises}}, function(err, result) {
 	    if(err) throw err;
 	    res.send('The exercise was updated');
 	});

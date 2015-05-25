@@ -24,12 +24,6 @@ testsystem.controller('newTestController', function($scope, TestService, notify,
 		}
 	};
 
-	$(document).ready(function(){
-			$('.question-name-input').focusout(function(){
-				//console.log($scope.newTest.questions.length);
-			})
-	})
-
 	$scope.prevExercise = function(){
 		$scope.currentExercise -= 1;
 	}

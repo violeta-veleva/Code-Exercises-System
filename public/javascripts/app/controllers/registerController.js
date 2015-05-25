@@ -16,4 +16,13 @@ testsystem.controller('registerController', function($scope, RegisterService, no
 		);
 		//console.log($scope.userData)
 	}
+	$scope.showPasswordMatchError = false;
+
+	$scope.checkPasswords = function(){
+		if($scope.userData.password !== $scope.userData.passwordAgain){
+			$scope.showPasswordMatchError = true;
+		}else{
+			$scope.showPasswordMatchError = false;
+		}
+	}
 })

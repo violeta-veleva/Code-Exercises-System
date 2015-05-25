@@ -37,7 +37,10 @@ testsystem.controller('jsExerciseController', function($scope, $routeParams, $ti
 			$scope.checkIfCurrentExerciseIsCorrect = function(){
 				$scope.exercise.exercises[$scope.currentExercise].js = JSEditor.getSession().getValue();
 				$scope.isCorrect = false;
-				var returnedValue = eval('(' + $scope.exercise.exercises[$scope.currentExercise].checkFunction + ')')
+				
+				var returnedValue = 
+				eval('((' + $scope.exercise.exercises[$scope.currentExercise].checkFunction + ')())')
+				
 				if(returnedValue){
 					$scope.isCorrect = true;
 					$scope.showMsgCorrect = true;

@@ -1,19 +1,19 @@
 <div class="login-box" ng-controller="loginController">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Code Exercises System</b></a>
+    <b>Code Exercises System</b>
   </div><!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
-    <form>
+    <form name="reviewForm" novalidate>
       <div class="form-group has-feedback">
-        <input ng-model="userData.username" type="text" class="form-control" placeholder="Email">
+        <input ng-model="userData.username" type="text" class="form-control" placeholder="Email" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input ng-model="userData.password" type="password" class="form-control" placeholder="Password">
+        <input ng-model="userData.password" type="password" class="form-control" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-       <button ng-click="login()" class="btn btn-primary btn-block btn-flat">Sign In</button>
+       <button ng-click="reviewForm.$valid && login()" class="btn btn-primary btn-block btn-flat" ng-class="{ disabled : !reviewForm.$valid }">Sign In</button>
     </form>
 
     <!--

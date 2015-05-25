@@ -8,11 +8,11 @@ testsystem.controller('loginController', function($scope, LoginService, notify){
 				notify(result.data);
 
 				window.location.reload();
-				window.location.href = '/#/'
+				window.location.href = '/#/';
 			},
 			function(error){
 				notify(error.data);
 			}
 		)
-	}
+	};
 });

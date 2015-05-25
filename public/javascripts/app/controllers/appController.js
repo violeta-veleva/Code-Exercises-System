@@ -6,10 +6,15 @@ testsystem.controller('appController', function($scope, AppService, $timeout, HT
 		$scope.editor = ($scope.role == 'admin' || $scope.role == 'teacher');
 	});
 
-	$(document).ready(function(){
+	$(window).load(getCurrentMenuItem);
+
+	$(window).on('hashchange', getCurrentMenuItem);
+
+	function getCurrentMenuItem(){
 		$('.sidebar-menu li').click(function(){
 			$('.sidebar-menu li').removeClass('active');
 			$(this).addClass('active');
-		})
-	});
+		});
+	};
+			
 });

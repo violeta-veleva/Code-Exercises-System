@@ -25,6 +25,15 @@ testsystem.factory('JSExerciseService',function($http){
 				}
 			})
 		},
+		editJSExercise : function(jsExercise){
+			return $http({
+				url : "/users/saveEditedJSExercise",
+				method : "POST",
+				data : {
+					jsExercise : jsExercise
+				}
+			})
+		},
 		submitExercise : function(jsExercise){
 			return $http({
 				url : "/users/submitJSExercise",
