@@ -44,6 +44,12 @@ db.collection('users').find().toArray(function(err, users){
 			})
 	}
 });
+/*
+db.collection('filledTests').remove({}, function(err, result){
+	if(err) throw err;
+	console.log("DELETED FILLED TESTS " + result);
+})
+*/
 console.log('Test System is running...');
 app.listen(app.get('port'), function(){
 	console.log("PORT : " + app.get('port'));
