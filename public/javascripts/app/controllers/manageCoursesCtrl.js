@@ -1,4 +1,4 @@
-testsystem.controller('manageCoursesCtrl', function($scope, ManageCoursesService, notify){
+testsystem.controller('manageCoursesCtrl', function($scope, ManageCoursesService, notify, $modal){
 	
 	$scope.newCourses = [];
 	$scope.bachelorCount = 4;
@@ -64,5 +64,45 @@ testsystem.controller('manageCoursesCtrl', function($scope, ManageCoursesService
 	ManageCoursesService.findCoursesByDegree("Master").success(function(data){
 		$scope.masterCourses = data;
 	});
+
+	$scope.confirmRemovingCourse = function(course, index){
+			$scope.removeCourse = function() {
+				ManageCoursesService.removeCourse(course._id).success(function(data){
+					if(course.degree === "Bachelor"){
+						$scope.bachelorCourses.splice(index, 1);
+					}
+					else if (course.degree === "Master"){
+						$scope.masterCourses.splice(index, 1);
+					}
+					notify(data);
+				});
+			}
+			var modalInstance = $modal.open({
+				templateUrl: '/users/confirmRemovingCourse',
+				scope : $scope,
+				controller : 'modalInstanceCtrl'
+			});
+	};
+
+	$scope.editable = {};
+
+	$scope.showEditForm = function(id){
+		$scope.editable[id] = true;
+	}
+	$scope.hideEditForm = function(id){
+		$scope.editable[id] = false;
+	}
+	$scope.editCourse = function(course){
+		ManageCoursesService.editCourse(course).success(function(data){
+			$scope.hideEditForm(course._id);
+			notify(data);
+		});
+		ManageCoursesService.findCoursesByDegree("Bachelor").success(function(data){
+		$scope.bachelorCourses = data;
+		});
+		ManageCoursesService.findCoursesByDegree("Master").success(function(data){
+			$scope.masterCourses = data;
+		});
+	}
 	
 });

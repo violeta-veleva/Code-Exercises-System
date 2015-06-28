@@ -30,15 +30,24 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                       <!-- list -->
-                      <span class="text">{{course.name}}</span>
-                      <p><i>{{course.degree}}</i></p>
+                      <span class="text" ng-show="!editable[course._id]">{{course.name}}</span>
+                      <input type="text" ng-model="course.name" ng-show="editable[course._id]"/>
+                      <p ng-show="!editable[course._id]"><i>{{course.degree}}</i></p>
+                      <select id="degree" class="form-control" ng-model="course.degree" ng-show="editable[course._id]">
+                        <option>Bachelor</option>
+                        <option>Master</option>
+                      </select>
+                      <div class="mt-20" ng-show="editable[course._id]">
+                        <button class="btn-warning" ng-click="editCourse(course)">Save</button>
+                        <button ng-click="hideEditForm(course._id)" class="btn-default">Cancel</button>
+                      </div>
                     </div>
                     <div class="col-xs-4">
                       <div class="tools" ng-if="editor">
-                        <a ng-href="#/editJSExercise/{{exercise.name}}">
+                        <a href="" ng-click="showEditForm(course._id)">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
+                        <a href="" ng-click="confirmRemovingCourse(course, $index)">
                           <i class="fa fa-trash-o"></i>
                         </a>
                       </div>
@@ -67,15 +76,25 @@
                         <i class="fa fa-ellipsis-v"></i>
                       </span>
                       <!-- list -->
-                      <span class="text">{{course.name}}</span>
-                      <p><i>{{course.degree}}</i></p>
+                      <span class="text" ng-show="!editable[course._id]">{{course.name}}</span>
+                      <input type="text" ng-model="course.name" ng-show="editable[course._id]"/>
+                      <p ng-show="!editable[course._id]"><i>{{course.degree}}</i></p>
+                      <select id="degree" class="form-control" ng-model="course.degree" ng-show="editable[course._id]">
+                        <option>Bachelor</option>
+                        <option>Master</option>
+                      </select>
+                      <div class="mt-20" ng-show="editable[course._id]">
+                        <button class="btn-warning" ng-click="editCourse(course)">Save</button>
+                        <button ng-click="hideEditForm(course._id)" class="btn-default">Cancel</button>
+                      </div>
+
                     </div>
                     <div class="col-md-4">
                       <div class="tools" ng-if="editor">
-                        <a ng-href="#/editJSExercise/{{exercise.name}}">
+                        <a ng-click="showEditForm(course._id)">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
+                        <a href="" ng-click="confirmRemovingCourse(course, $index)">
                           <i class="fa fa-trash-o"></i>
                         </a>
                       </div>

@@ -12,6 +12,24 @@ testsystem.factory('ManageCoursesService', function($http){
 		},
 		findCoursesByDegree : function(degree) {
 			return $http.get('/users/findCoursesByDegree/'+degree);
+		},
+		removeCourse : function(id){
+			return $http({
+				url : "/users/removeCourse",
+				method : "POST",
+				data : {
+					id : id
+				}
+			})
+		},
+		editCourse : function(course){
+			return $http({
+				url : "/users/saveEditedCourse",
+				method : "POST",
+				data : {
+					course : course
+				}
+			})
 		}
 	}
 })

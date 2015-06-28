@@ -180,6 +180,10 @@ router.get('/confirmRemovingJSExercise', function(req, res){
     res.render('confirmRemovingJSExercise.ejs')
 })
 
+router.get('/confirmRemovingCourse', function(req, res){
+    res.render('confirmRemovingCourse.ejs')
+})
+
 router.get('/newtest', function(req,res){
 	res.render('new-test.ejs', {title: 'New Test'});
 });
@@ -280,6 +284,16 @@ router.post('/removeTest', function(req, res){
 	});
 })
 
+router.post('/removeCourse', function(req, res){
+	var courseId = req.body.id;
+	console.log(req.body.id);
+	req.db.collection('courses').remove({_id: new req.ObjectID(courseId)}, function(err, result){
+		if(err) throw err;
+		res.send('The course was delated successfully');
+		console.log(result);
+	});
+})
+
 router.post('/removeHTMLExercise', function(req, res){
 	var htmlExercise = req.body.id;
 	req.db.collection('htmlExercises').remove({_id: new req.ObjectID(htmlExercise)}, function(err, result){
@@ -306,6 +320,16 @@ router.post('/saveEditedTest', function(req, res){
 		update({_id: new req.ObjectID(test._id)}, {$set:{name:test.name, suitable:test.suitable, article:test.article, questions:test.questions}}, function(err, result) {
 	    if(err) throw err;
 	    res.send('The test was updated');
+	});
+})
+
+router.post('/saveEditedCourse', function(req, res){
+	var course = req.body.course;
+
+	req.db.collection('courses').
+		update({_id: new req.ObjectID(course._id)}, {$set:{name:course.name, degree:course.degree}}, function(err, result) {
+	    if(err) throw err;
+	    res.send('The course was updated');
 	});
 })
 
