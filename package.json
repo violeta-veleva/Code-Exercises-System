@@ -8,11 +8,14 @@
     "body-parser": "^1.10.2",
     "deferred": "^0.7.2",
     "ejs": "^2.1.4",
+    "excel-parser": "^0.2.2",
     "express": "^4.11.1",
     "express-session": "^1.11.1",
     "mongodb": "^1.4.34",
     "mongoose": "^3.8.21",
-    "mongoskin": "^1.4.12"
+    "mongoskin": "^1.4.12",
+    "morgan": "^1.6.0",
+    "multer": "^0.1.8"
   },
   "devDependencies": {},
   "scripts": {

@@ -16,6 +16,12 @@ testsystem.config(function($routeProvider) {
    }).when('/viewAllUsers',{
       templateUrl : "/users/viewAllUsers",
       controller : "viewAllUsers"
+   }).when('/manageCourses',{
+      templateUrl : "/users/manageCourses",
+      controller : "manageCoursesCtrl"
+   }).when('/import',{
+      templateUrl : "/users/import",
+      controller : "importCtrl"
    }).when('/myExercises',{
       templateUrl : "/users/filledExercises",
       controller : "myFilledExercises"
@@ -64,4 +70,27 @@ testsystem.config(function($routeProvider) {
    }).otherwise({
    	redirectTo : "/404"
    })
+});
+
+testsystem.directive("excel", function(){
+   return {
+      scope : {
+         excel : "="
+      },
+      link : function(scope, element, attributes){
+         element.bind("change", function(changeEvent){
+            var reader = new FileReader();
+            var file = changeEvent.target.files[0];
+
+            reader.onload = function(loadEvent){
+               scope.$apply(function(){
+                  scope.excel = loadEvent.target.result;
+               });
+            }
+
+            reader.readAsArrayBuffer(file);
+
+         });
+      }
+   }
 });

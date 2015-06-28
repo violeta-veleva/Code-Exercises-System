@@ -2,6 +2,7 @@ testsystem.controller('newTestController', function($scope, TestService, notify,
 	function init(){
 		$scope.newTest = {
 			name : "",
+			suitable: "",
 			article : "",
 			questions : [
 				TestService.createNewQuestion()

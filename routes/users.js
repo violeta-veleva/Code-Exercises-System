@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var service = require('./service.js');
+var excelParser = require('excel-parser');
 
 function loginFilter(req, res, next){
 	if(!req.session.loggedIn || (req.session.loggedIn.role != 'teacher' && req.session.loggedIn.role != 'admin')) {
@@ -210,8 +210,28 @@ router.get('/allUsers', function(req,res){
 	});
 });
 
+router.get('/allCourses', function(req,res){
+	req.db.collection('courses').find().toArray(function(err, courses){
+		res.send(courses);
+	});
+});
+
+router.get('/findCoursesByDegree/:degree', function(req,res){
+	req.db.collection('courses').find({degree : req.param("degree")}).toArray(function(err, courses){
+		res.send(courses);
+	});
+});
+
 router.get('/viewAllUsers', function(req,res){
 	res.render("viewAllUsers.ejs", {title: 'View All Users'});
+});
+
+router.get('/manageCourses', function(req,res){
+	res.render("manageCourses.ejs", {title: 'Manage Courses'});
+});
+
+router.get('/import', function(req,res){
+	res.render("import.ejs", {title: 'Import'});
 });
 
 router.post('/saveTest', function(req,res){
@@ -238,6 +258,15 @@ router.post('/saveJSExercise', function(req,res){
 		if(err) throw err;
 		res.send("your exercise was saved successfully");
 		console.log(newExercise);
+	});	
+});
+
+router.post('/saveCourse', function(req,res){
+	var newCourse = req.body;
+	req.db.collection('courses').insert(newCourse, function(err,result){
+		if(err) throw err;
+		res.send("Your course was saved successfully");
+		console.log(newCourse);
 	});	
 });
 
@@ -274,7 +303,7 @@ router.post('/saveEditedTest', function(req, res){
 	console.log(req.body.test);
 
 	req.db.collection('tests').
-		update({_id: new req.ObjectID(test._id)}, {$set:{name:test.name, article:test.article, questions:test.questions}}, function(err, result) {
+		update({_id: new req.ObjectID(test._id)}, {$set:{name:test.name, suitable:test.suitable, article:test.article, questions:test.questions}}, function(err, result) {
 	    if(err) throw err;
 	    res.send('The test was updated');
 	});
@@ -285,7 +314,7 @@ router.post('/saveEditedHTMLExercise', function(req, res){
 	console.log(htmlExercise);
 
 	req.db.collection('htmlExercises').
-		update({_id: new req.ObjectID(htmlExercise._id)}, {$set:{name:htmlExercise.name, exercises:htmlExercise.exercises}}, function(err, result) {
+		update({_id: new req.ObjectID(htmlExercise._id)}, {$set:{name:htmlExercise.name, suitable:htmlExercise.suitable, exercises:htmlExercise.exercises}}, function(err, result) {
 	    if(err) throw err;
 	    res.send('The exercise was updated');
 	});
@@ -296,7 +325,7 @@ router.post('/saveEditedJSExercise', function(req, res){
 	console.log(jsExercise);
 
 	req.db.collection('jsExercises').
-		update({_id: new req.ObjectID(jsExercise._id)}, {$set:{name:jsExercise.name, exercises:jsExercise.exercises}}, function(err, result) {
+		update({_id: new req.ObjectID(jsExercise._id)}, {$set:{name:jsExercise.name, suitable:jsExercise.suitable, exercises:jsExercise.exercises}}, function(err, result) {
 	    if(err) throw err;
 	    res.send('The exercise was updated');
 	});
@@ -312,6 +341,32 @@ router.post('/saveEditedRole', function(req, res){
 	    res.send('The role of the user was updated');
 	    console.log(user);
 	});
-})
+});
+
+router.post('/import', function(req,res){
+	console.log(req.body)
+	var types = {
+		"Article with test" : "tests",
+		"HTML Exercise" : "htmlExercises",
+		"JS Exercise" : "jsExercises",
+		"Users" : "users",
+		"Courses" : "courses"
+	}
+
+	if(!types[req.body.type]){
+		return res.status(400).send("");
+	}
+
+	var path = req.files.excel.path;
+	excelParser.parse({
+	  inFile: path,
+	  worksheet: 1
+	}, function(err, rows){
+		if(err) throw err;
+		console.log(rows);
+		res.send(rows);
+	});
+	
+});
 
 module.exports = router;

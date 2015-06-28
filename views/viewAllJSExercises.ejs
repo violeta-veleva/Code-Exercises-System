@@ -21,6 +21,7 @@
       <ul class="todo-list">
       	<li ng-repeat="exercise in jsExercises">
       		<a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a>
+          <p class="hashtag">#{{exercise.suitable}}</p>
       	</li>
       </ul>
     </div><!-- /.box-body -->

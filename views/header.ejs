@@ -7,10 +7,7 @@
 	    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	    <!-- Ionicons 2.0.0 -->
 	    <link href="https://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" /> 
-	     <!-- Date Picker -->
-    	<link href="lib/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/lib/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/angular-notify.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/js-console.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/main.min.css">	
@@ -98,6 +95,16 @@
 		            <li ng-if="editor">
 		              <a href="#/viewAllUsers" >
 		                <i class="fa fa-user"></i> <span>Users</span>
+		              </a>
+		            </li>
+		            <li ng-if="editor">
+		              <a href="#/manageCourses" >
+		                <i class="fa fa-user"></i> <span>Courses</span>
+		              </a>
+		            </li>
+		            <li ng-if="editor">
+		              <a href="#/import" >
+		                <i class="fa fa-user"></i> <span>Import</span>
 		              </a>
 		            </li>
 		            <li ng-if="isLoggedIn">

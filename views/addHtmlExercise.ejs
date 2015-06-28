@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>
     Add New HTML Exercise
-    <small>Write an introducion and instructions foreach exercise. </small>
+    <small>Write an introducion and instructions foreach exercise.</small>
   </h1>
   <ol class="breadcrumb">
     <li><a ng-href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,6 +20,14 @@
 						<label for="exercise-name" class="test-name">Exercise name: </label>
 						<input type="text" ng-model="exercise.name" id="exercise-name" class="form-control" required />
 					</div>
+					<div class="form-group">
+						<label for="suitable">Suitable for:</label>
+						<select id="suitable" class="form-control" ng-model="exercise.suitable" required>
+							<option>Beginners</option>
+							<option>Middle Level</option>
+							<option>Advanced</option>
+						</select>
+					</div>
 					<h3>Item {{currentExercise + 1}}</h3>
 
 					<div class="form-group">
@@ -36,7 +44,7 @@
 					<textarea id="css-content" rows="20" cols="42" ng-model="exercise.exercises[currentExercise].css"></textarea>
 
 
-					<iframe width="480px" height="400px;" id="user-output">
+					<iframe id="user-output" width="480px" height="400px;">
 					</iframe>
 
 					<div class="form-group">

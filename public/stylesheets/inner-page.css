@@ -1,5 +1,6 @@
 .inner-page {
   padding: 0;
+  /* noteline */
   /* editor */ }
   .inner-page .box-primary {
     padding: 15px; }
@@ -109,5 +110,11 @@
       background: #fff; }
     .page-view-all .todo-list > li:hover {
       background-color: #f5f5f5; }
+
+.mt-20 {
+  margin-top: 20px; }
+
+.box-primary .hashtag {
+  padding-left: 20px; }
 
 /*# sourceMappingURL=inner-page.css.map */

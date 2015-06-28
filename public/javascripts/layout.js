@@ -1,26 +1,11 @@
-//Make sure jQuery has been loaded before main.js
 if (typeof jQuery === "undefined") {
   throw new Error("AdminLTE requires jQuery");
 }
 
 'use strict';
 
-/* AdminLTE
- *
- * @type Object
- * @description $.AdminLTE is the main object for the template's app.
- *				It's used for implementing functions and options related
- *				to the template. Keeping everything wrapped in an object
- *				prevents conflict with other plugins and is a better
- *				way to organize our code.
- */
 $.AdminLTE = {};
 
-/* --------------------
- * - AdminLTE Options -
- * --------------------
- * Modify these options to suit your implementation
- */
 $.AdminLTE.options = {
   //Add slimscroll to navbar menus
   //This requires you to load the slimscroll plugin

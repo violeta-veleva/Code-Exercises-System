@@ -21,6 +21,7 @@
       <ul class="todo-list">
       	<li ng-repeat="test in tests">
       		<a ng-href="#/test/{{test.name}}"> {{test.name}}</a>
+          <p class="hashtag">#{{test.suitable}}</p>
       	</li>
       </ul>
     </div><!-- /.box-body -->

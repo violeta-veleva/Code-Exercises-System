@@ -48,7 +48,7 @@ testsystem.controller('addHtmlExerciseController', function($scope, HTMLExercise
 				$scope.updateEditors();
 			}
 
-	         $scope.saveHTMLExercise = function(){
+	        $scope.saveHTMLExercise = function(){
 	         	$scope.updateHTMLAndCSSInJSON();
 	         	console.log($scope.exercise);
 				HTMLExerciseService.saveHTMLExercise($scope.exercise).success(function(data){
@@ -70,9 +70,7 @@ testsystem.controller('addHtmlExerciseController', function($scope, HTMLExercise
 
 			$scope.prevExercise = function(){
 				$scope.currentExercise -= 1;
-				console.log($scope.exercise);
 				$scope.updateEditors();
-				console.log($scope.exercise);
 			}
 
 			$scope.nextExercise = function(){

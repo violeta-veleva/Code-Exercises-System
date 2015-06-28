@@ -22,8 +22,17 @@
 						</div>
 
 						<div class="form-group">
+							<label for="suitable">Suitable for:</label>
+							<select id="suitable" class="form-control" ng-model="newTest.suitable" required>
+								<option>Beginners</option>
+								<option>Middle Level</option>
+								<option>Advanced</option>
+							</select>
+						</div>
+
+						<div class="form-group">
 							<label for="article" >Article</label>			
-							 <textarea id="editor1" onkeyup="alert('a')" name="editor1" rows="10" cols="80" ng-model="newTest.article"> 
+							 <textarea id="editor1" name="editor1" rows="10" cols="80" ng-model="newTest.article"> 
                     		</textarea>
 						</div>
 						

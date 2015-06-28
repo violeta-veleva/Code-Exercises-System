@@ -56,7 +56,6 @@ testsystem.factory('JSExerciseService',function($http){
 	        return jsEditor;
 		},
 		runScript : function() {
-
 			var el = document.getElementById('js-content');
 			var scriptText = el.value;
 			var oldScript = document.getElementById('scriptContainer');

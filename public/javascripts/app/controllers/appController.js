@@ -1,4 +1,4 @@
-testsystem.controller('appController', function($scope, AppService, $timeout, HTMLExerciseService){
+testsystem.controller('appController', function($scope, AppService, $timeout){
 	AppService.getUserDetails().success(function(data){
 		$scope.isLoggedIn = data.loggedIn;
 		$scope.role = data.role;

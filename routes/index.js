@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var service = require('./service.js');
 var Deferred = require('Deferred');
 
 //TODO: password encryption

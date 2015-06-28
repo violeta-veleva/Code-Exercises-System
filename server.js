@@ -1,6 +1,9 @@
 var express = require('express');
 var path = require('path');
 var mongo = require('mongoskin');
+var multer  = require('multer');
+var logger = require('morgan');
+
 var mongoLabURI = "mongodb://heroku_app37016502:p1sbe9ln8etukcd8eegchpk5jd@ds031852.mongolab.com:31852/heroku_app37016502";
 var db =  mongo.db(mongoLabURI, {native_parser:true});
 var ObjectID = mongo.ObjectID;
@@ -12,6 +15,7 @@ var session = require('express-session');
 
 app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 5000));
+app.use(logger('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 var bodyParser = require('body-parser');
@@ -29,6 +33,22 @@ app.use(
   		saveUninitialized: true
 	})
 );
+
+app.use(
+	multer({ 
+		dest: './import/',
+		onFileUploadStart: function (file, req, res) {
+	  		console.log(file.fieldname + ' is starting ...')
+		},
+		onFileUploadData: function (file, data, req, res) {
+		  console.log(data.length + ' of ' + file.fieldname + ' arrived')
+		},
+		onFileUploadComplete: function (file, req, res) {
+		  console.log(file.fieldname + ' uploaded to  ' + file.path)
+		}
+	})
+);
+
 app.use('/',index);
 app.use('/users', users);
 
@@ -50,8 +70,8 @@ db.collection('filledTests').remove({}, function(err, result){
 	console.log("DELETED FILLED TESTS " + result);
 })
 */
-console.log('Test System is running...');
 app.listen(app.get('port'), function(){
+	console.log('Test System is running...');
 	console.log("PORT : " + app.get('port'));
 });
 

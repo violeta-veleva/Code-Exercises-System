@@ -57,21 +57,30 @@
                   <ul class="todo-list">
                     <li ng-repeat="exercise in htmlExercises">
                       <div class="item-content">
-                        <!-- icon -->
-                        <span class="handle">
-                          <i class="fa fa-ellipsis-v"></i>
-                          <i class="fa fa-ellipsis-v"></i>
-                        </span>
-                        <!-- list -->
-                        <span class="text"><a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
-                        <div class="tools" ng-if="editor">
-                          <a ng-href="#/editHtmlExercise/{{exercise.name}}">
-                            <i class="fa fa-edit"></i>
-                          </a>
-                        
-                          <a href="" ng-click="confirmRemovingHTMLExercise(exercise, $index)">
-                            <i class="fa fa-trash-o"></i>
-                          </a>
+                        <div class="row no-margin">
+                          <div class="col-xs-8">
+                          <!-- icon -->
+                            <span class="handle">
+                              <i class="fa fa-ellipsis-v"></i>
+                              <i class="fa fa-ellipsis-v"></i>
+                            </span>
+                            <!-- list -->
+                            <span class="text">
+                              <a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a>
+                            </span>
+                            <p class="hashtag">#{{exercise.suitable}}</p>
+                          </div>
+                          <div class="col-xs-4">
+                            <div class="tools" ng-if="editor">
+                              <a ng-href="#/editHtmlExercise/{{exercise.name}}">
+                                <i class="fa fa-edit"></i>
+                              </a>
+                            
+                              <a href="" ng-click="confirmRemovingHTMLExercise(exercise, $index)">
+                                <i class="fa fa-trash-o"></i>
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </li>
@@ -96,20 +105,27 @@
                 <div class="box-body">
                   <ul class="todo-list">
                     <li ng-repeat="exercise in jsExercises">
-                      <!-- icon -->
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <!-- list -->
-                      <span class="text"><a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
-                      <div class="tools" ng-if="editor">
-                        <a ng-href="#/editJSExercise/{{exercise.name}}">
-                          <i class="fa fa-edit"></i>
-                        </a>
-                        <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
-                          <i class="fa fa-trash-o"></i>
-                        </a>
+                      <div class="row no-margin">
+                        <div class="col-xs-8">
+                          <!-- icon -->
+                          <span class="handle">
+                            <i class="fa fa-ellipsis-v"></i>
+                            <i class="fa fa-ellipsis-v"></i>
+                          </span>
+                          <!-- list -->
+                          <span class="text"><a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
+                          <p class="hashtag">#{{exercise.suitable}}</p>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="tools" ng-if="editor">
+                            <a ng-href="#/editJSExercise/{{exercise.name}}">
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
+                              <i class="fa fa-trash-o"></i>
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </li>
                   </ul>
@@ -125,7 +141,7 @@
             </section><!-- right col -->
           </div><!-- /.row (main row) -->
 
-                    <div class="row">
+           <div class="row">
             <!-- Left col -->
             <section class="col-lg-6">
               <!-- List -->
@@ -138,19 +154,26 @@
                   <ul class="todo-list">
                     <li ng-repeat="test in tests">
                       <!-- icon -->
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <!-- list -->
-                      <span class="text"><a ng-href="#/test/{{test.name}}"> {{test.name}}</a></span>
-                      <div class="tools" ng-if="editor">
-                        <a ng-href="#/edittest/{{test.name}}" ng-click="editTest(test)">
-                          <i class="fa fa-edit"></i>
-                        </a>
-                        <a href="" ng-click="confirmRemovingTest(test, $index)">
-                          <i class="fa fa-trash-o"></i>
-                        </a>
+                      <div class="row no-margin">
+                        <div class="col-xs-8">
+                          <span class="handle">
+                            <i class="fa fa-ellipsis-v"></i>
+                            <i class="fa fa-ellipsis-v"></i>
+                          </span>
+                          <!-- list -->
+                          <span class="text"><a ng-href="#/test/{{test.name}}"> {{test.name}}</a></span>
+                          <p class="hashtag">#{{test.suitable}}</p>
+                        </div>
+                        <div class="col-xs-4">
+                          <div class="tools" ng-if="editor">
+                            <a ng-href="#/edittest/{{test.name}}" ng-click="editTest(test)">
+                              <i class="fa fa-edit"></i>
+                            </a>
+                            <a href="" ng-click="confirmRemovingTest(test, $index)">
+                              <i class="fa fa-trash-o"></i>
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </li>
                   </ul>
