@@ -91,6 +91,18 @@ router.get('/allJSExercises', function(req,res){
 	});
 });
 
+router.get('/allCourses', function(req,res){
+	req.db.collection('courses').find().toArray(function(err, courses){
+		res.send(courses);
+	});
+});
+
+router.get('/findCoursesByDegree/:degree', function(req,res){
+	req.db.collection('courses').find({degree : req.param("degree")}).toArray(function(err, courses){
+		res.send(courses);
+	});
+});
+
 router.get('/htmlExercise', function(req, res){
 	res.render('htmlExercise.ejs');
 });

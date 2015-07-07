@@ -214,18 +214,6 @@ router.get('/allUsers', function(req,res){
 	});
 });
 
-router.get('/allCourses', function(req,res){
-	req.db.collection('courses').find().toArray(function(err, courses){
-		res.send(courses);
-	});
-});
-
-router.get('/findCoursesByDegree/:degree', function(req,res){
-	req.db.collection('courses').find({degree : req.param("degree")}).toArray(function(err, courses){
-		res.send(courses);
-	});
-});
-
 router.get('/viewAllUsers', function(req,res){
 	res.render("viewAllUsers.ejs", {title: 'View All Users'});
 });
@@ -367,6 +355,25 @@ router.post('/saveEditedRole', function(req, res){
 	});
 });
 
+function convertRows(type, row){
+	var object = undefined;
+	console.log(type)
+	switch(type) {
+		case 'tests' : {
+			object = {
+				name : row[0],
+				suitable : row[1],
+				article : row[2],
+				questionName : row[3],
+				answerName : row[4],
+				rightAnswer : row[5]
+			}
+			break;
+		}
+	}
+	return object;
+}
+
 router.post('/import', function(req,res){
 	console.log(req.body)
 	var types = {
@@ -377,19 +384,72 @@ router.post('/import', function(req,res){
 		"Courses" : "courses"
 	}
 
+	var models = {
+		"Article with test" : "test",
+		"HTML Exercise" : "htmlExercise",
+		"JS Exercise" : "jsExercise",
+		"Users" : "user",
+		"Courses" : "course"
+	}
+
 	if(!types[req.body.type]){
 		return res.status(400).send("");
 	}
+	
+	var model = models[req.body.type];
+
+	var type = types[req.body.type];
 
 	var path = req.files.excel.path;
-	excelParser.parse({
-	  inFile: path,
-	  worksheet: 1
-	}, function(err, rows){
-		if(err) throw err;
-		console.log(rows);
-		res.send(rows);
+	var fs = require('fs');
+	var data = fs.readFileSync(path, "utf8");
+	var parsed = JSON.parse(data);
+
+	parsed.forEach(function(object){
+		delete object._id;
+
 	});
+	for(var i = 0; i < parsed.length; i++){
+		delete parsed[i]._id;
+		var result = req.utils.validate(model, parsed[i]);
+		var valid = result.valid;
+		console.log(result.missing);
+		if(!valid) {
+			result.missing.forEach(function(msg){
+				console.log(msg);
+			});
+			return res.status(400).send(result.missing)
+		}
+	}
+
+	req.db.collection(type).insert(parsed, function(err, result){
+		if(err) throw err;
+		res.send('Data has been imported successfully');
+	});
+	// excelParser.parse({
+	//   inFile: path,
+	//   worksheet: 1
+	// }, function(err, rows){
+	// 	if(err) throw err;
+	// 	var colName = 'imported' + type;
+
+	// 	req.db.collection(colName).remove({}, function(err, result){
+	// 		console.log('previous imported data removed');
+	// 		var convertedRows = [];
+
+	// 		for(var i=0; i<rows.length; i++){
+	// 			convertedRows.push(convertRows(type,rows[i]));
+	// 		}
+
+	// 		req.db.collection(colName).insert(convertedRows, function(err, result){
+	// 			if(err) throw err;
+	// 			console.log('inserted');
+	// 		});
+	// 		res.send('ok')
+			
+	// 	});
+		
+	// });
 	
 });
 

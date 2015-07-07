@@ -5,9 +5,11 @@ var multer  = require('multer');
 var logger = require('morgan');
 
 var mongoLabURI = "mongodb://heroku_app37016502:p1sbe9ln8etukcd8eegchpk5jd@ds031852.mongolab.com:31852/heroku_app37016502";
-var db =  mongo.db(mongoLabURI, {native_parser:true});
+var db =  mongo.db('mongodb://localhost:27017/testsystem', {native_parser:true});
 var ObjectID = mongo.ObjectID;
 var app = express();
+var utils = require('./utils/validation.js');
+
 var index = require('./routes/index.js');
 var users = require('./routes/users.js');
 
@@ -23,6 +25,7 @@ app.use(bodyParser.json());
 app.use(function(req,res,next){
 	req.db = db;
 	req.ObjectID = ObjectID;
+	req.utils = utils;
 	next();
 });
 app.use(

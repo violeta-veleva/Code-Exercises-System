@@ -8,10 +8,10 @@ testsystem.factory('ManageCoursesService', function($http){
 			})
 		},
 		findAllCourses : function() {
-			return $http.get('/users/allCourses');
+			return $http.get('/allCourses');
 		},
 		findCoursesByDegree : function(degree) {
-			return $http.get('/users/findCoursesByDegree/'+degree);
+			return $http.get('/findCoursesByDegree/'+degree);
 		},
 		removeCourse : function(id){
 			return $http({

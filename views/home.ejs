@@ -55,7 +55,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <ul class="todo-list">
-                    <li ng-repeat="exercise in htmlExercises">
+                    <li ng-repeat="exercise in htmlExercises | limitTo: 10">
                       <div class="item-content">
                         <div class="row no-margin">
                           <div class="col-xs-8">
@@ -86,8 +86,11 @@
                     </li>
                   </ul>
                 </div><!-- /.box-body -->
-                <div class="box-footer clearfix no-border" ng-if="editor">
-                  <a ng-href="#/addHtmlExercise" title="Add item" class="btn btn-default pull-right">
+                <div class="box-footer clearfix no-border">
+                  <a ng-href="#/viewAllHTMLExercises" title="Add item" class="btn btn-default pull-left">
+                    View All
+                  </a>
+                  <a ng-href="#/addHtmlExercise" title="Add item" class="btn btn-default pull-right" ng-if="editor">
                     <i class="fa fa-plus"></i> Add HTML Exercise
                   </a>
                 </div>
@@ -104,7 +107,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <ul class="todo-list">
-                    <li ng-repeat="exercise in jsExercises">
+                    <li ng-repeat="exercise in jsExercises | limitTo: 10">
                       <div class="row no-margin">
                         <div class="col-xs-8">
                           <!-- icon -->
@@ -130,8 +133,11 @@
                     </li>
                   </ul>
                 </div><!-- /.box-body -->
-                <div class="box-footer clearfix no-border" ng-if="editor">
-                  <a ng-href="#/addJSExercise" title="Add item" class="btn btn-default pull-right">
+                <div class="box-footer clearfix no-border">
+                  <a ng-href="#/viewAllJSExercises" title="Add item" class="btn btn-default pull-left">
+                    View All
+                  </a>
+                  <a ng-href="#/addJSExercise" title="Add item" class="btn btn-default pull-right" ng-if="editor">
                     <i class="fa fa-plus"></i> Add JS Exercise
                   </a>
                 </div>
@@ -152,7 +158,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <ul class="todo-list">
-                    <li ng-repeat="test in tests">
+                    <li ng-repeat="test in tests | limitTo: 10">
                       <!-- icon -->
                       <div class="row no-margin">
                         <div class="col-xs-8">
@@ -178,9 +184,12 @@
                     </li>
                   </ul>
                 </div><!-- /.box-body -->
-                <div class="box-footer clearfix no-border" ng-if="editor">
-                  <a ng-href="#/newtest" title="Add item" class="btn btn-default pull-right">
-                    <i class="fa fa-plus"></i> Add item
+                <div class="box-footer clearfix no-border">
+                  <a ng-href="#/viewAllArticles" title="Add item" class="btn btn-default pull-left">
+                    View All
+                  </a>
+                  <a ng-href="#/newtest" title="Add item" class="btn btn-default pull-right" ng-if="editor">
+                    <i class="fa fa-plus"></i> Add Article with test
                   </a>
                 </div>
               </div><!-- /.box -->

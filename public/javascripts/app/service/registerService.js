@@ -6,6 +6,9 @@ testsystem.factory('RegisterService',function($http){
 				method : 'POST',
 				data : userData
 			})
+		},
+		findCoursesByDegree : function(degree) {
+			return $http.get('/users/findCoursesByDegree/'+degree);
 		}
 	}
 })
