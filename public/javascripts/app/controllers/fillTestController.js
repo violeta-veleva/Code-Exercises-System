@@ -1,7 +1,7 @@
 testsystem.controller('fillTestController', function ($scope, $routeParams, TestService, notify) {
 	TestService.findTestByName($routeParams.name).success(function(data){
 		$scope.test = data;
-		console.log($scope.test);
+		console.log(data);
 		$scope.test.points = 0;
 		$scope.total = $scope.test.questions.length;
 

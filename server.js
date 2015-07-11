@@ -70,12 +70,17 @@ db.collection('users').find().toArray(function(err, users){
 			})
 	}
 });
-/*
-db.collection('filledTests').remove({}, function(err, result){
+
+/*db.collection('filledTests').remove({}, function(err, result){
 	if(err) throw err;
 	console.log("DELETED FILLED TESTS " + result);
 })
-*/
+
+db.collection('tests').remove({}, function(err, result){
+	if(err) throw err;
+	console.log("DELETED TESTS " + result);
+})*/
+
 app.listen(app.get('port'), function(){
 	console.log('Test System is running...');
 	console.log("PORT : " + app.get('port'));

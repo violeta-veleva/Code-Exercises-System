@@ -18,7 +18,8 @@
 	      <ul class="todo-list">
 	      	<li ng-repeat="user in users">
 				<h4>Username: {{user.username}}</h4>
-				<p>Role: {{user.role}}</p>
+        <p ng-if="user.degree">Degree: {{user.degree}}</p>
+				<p ng-if="user.course">Course: {{user.course}}</p>
 				<select id="user-role-select" ng-model="user.role" class="form-control">
 					<option>student</option>
 					<option>teacher</option>
