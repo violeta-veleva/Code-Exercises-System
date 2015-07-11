@@ -29,7 +29,21 @@
 								<option>Advanced</option>
 							</select>
 						</div>
-
+						
+						<div class="form-group has-feedback">
+							<label for="degree">Degree</label>
+							<select id="degree" class="form-control" ng-model="newTest.course.degree" ng-change="findCoursesByDegree(newTest.course.degree)">
+								<option>Bachelor</option>
+								<option>Master</option>
+							</select>
+						</div>
+						<div class="form-group has-feedback">
+							<label for="course">Course</label>
+							<select id="course" ng-model="newTest.course.name"class="form-control">
+								<option ng-repeat="course in courses track by $index">{{course.name}}</option>
+							</select>
+						</div>
+					
 						<div class="form-group">
 							<label for="article" >Article</label>			
 							 <textarea id="editor1" name="editor1" rows="10" cols="80" ng-model="newTest.article"> 
@@ -67,7 +81,7 @@
 								<button ng-click="prevExercise()" class="btn btn-primary" ng-class="{ disabled : currentExercise == 0 }"> Previous question </button>
 							</div>
 							<div class="col-md-6">
-								<button ng-click="nextExercise()" class="btn btn-primary pull-right" ng-class="{ disabled : (currentExercise + 1) == questionsCount }"> Next question </button>	
+								<button ng-click="nextExercise()" class="btn btn-primary pull-right" ng-class="{ disabled : (currentExercise) == questionsCount }"> Next question </button>	
 							</div>
 						</div>
 						<div class="row">

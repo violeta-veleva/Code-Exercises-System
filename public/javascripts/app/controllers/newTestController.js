@@ -1,8 +1,9 @@
-testsystem.controller('newTestController', function($scope, TestService, notify, $timeout){
+testsystem.controller('newTestController', function($scope, TestService, ManageCoursesService, notify, $timeout){
 	function init(){
 		$scope.newTest = {
 			name : "",
 			suitable: "",
+			course:{},
 			article : "",
 			questions : [
 				TestService.createNewQuestion()
@@ -64,7 +65,11 @@ testsystem.controller('newTestController', function($scope, TestService, notify,
 		});
 	};
 
-
 	TestService.createEditor();
 
+	$scope.findCoursesByDegree = function(degree){
+		ManageCoursesService.findCoursesByDegree(degree).success(function(data){
+			$scope.courses = data;
+		});
+	}
 });	

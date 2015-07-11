@@ -82,7 +82,7 @@
 						<button class="btn btn-success" ng-class="{disabled : !reviewForm.$valid}" ng-click="editJSExercise()">Save</button>
 					</div>
 					<div class="col-md-6">
-						<button ng-click="editJSExercise(exercise)" class="btn btn-success pull-right" ng-class="{ disabled : (exerciseCount != (currentExercise + 1)) || !reviewForm.$valid }"> Add New Exercise </button>
+						<button ng-click="addNewExercise()" class="btn btn-success pull-right" ng-class="{ disabled : (exerciseCount != (currentExercise + 1)) || !reviewForm.$valid }"> Add New Exercise </button>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 testsystem.controller('editHtmlExerciseCtrl', function($scope, HTMLExerciseService, ExerciseService, $timeout, notify, $routeParams){
 	HTMLExerciseService.findHTMLExerciseByName($routeParams.name).success(function(data){
+		console.log(data);
 		$scope.exercise = data;
 		$scope.currentExercise = 0;
 
@@ -74,6 +75,6 @@ testsystem.controller('editHtmlExerciseCtrl', function($scope, HTMLExerciseServi
 				}
 		})
 
-
+			
 	});
 })

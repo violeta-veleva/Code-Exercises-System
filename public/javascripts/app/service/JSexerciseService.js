@@ -11,7 +11,7 @@ testsystem.factory('JSExerciseService',function($http){
 			return $http.get('/allJSExercises')
 		},
 		findUsersJSExercises : function(){
-			return $http.get('/users/getUsersJSExercises');
+			return $http.get('/loggedUsers/getUsersJSExercises');
 		},
 		findJSExerciseByName : function(name){
 			return $http.get('/jsExercise/' + name);
@@ -36,7 +36,7 @@ testsystem.factory('JSExerciseService',function($http){
 		},
 		submitExercise : function(jsExercise){
 			return $http({
-				url : "/users/submitJSExercise",
+				url : "/loggedUsers/submitJSExercise",
 				method : "POST",
 				data: {
 					jsExercise : jsExercise

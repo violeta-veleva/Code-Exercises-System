@@ -1,4 +1,4 @@
-testsystem.controller('addJSExerciseController', function($scope, JSExerciseService, ExerciseService, $timeout, notify){
+testsystem.controller('addJSExerciseController', function($scope, JSExerciseService, ExerciseService, ManageCoursesService, $timeout, notify){
 	function init(){
 		$scope.exercise = {
 			name : "",
@@ -54,6 +54,12 @@ testsystem.controller('addJSExerciseController', function($scope, JSExerciseServ
 			$scope.updateEditor();
 		}
 	})
+
+	$scope.findCoursesByDegree = function(degree){
+		ManageCoursesService.findCoursesByDegree(degree).success(function(data){
+			$scope.courses = data;
+		});
+	}
 	
 
 	//attach run script function

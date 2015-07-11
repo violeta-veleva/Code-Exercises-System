@@ -22,6 +22,7 @@
       	<li ng-repeat="exercise in htmlExercises">
       		<a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a>
           <p class="hashtag">#{{exercise.suitable}}</p>
+          <p ng-if="exercise.course" class="hashtag">For Course: {{exercise.course.name}}</p>
       	</li>
       </ul>
     </div><!-- /.box-body -->

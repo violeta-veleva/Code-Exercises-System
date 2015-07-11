@@ -23,7 +23,7 @@ testsystem.config(function($routeProvider) {
       templateUrl : "/users/import",
       controller : "importCtrl"
    }).when('/myExercises',{
-      templateUrl : "/users/filledExercises",
+      templateUrl : "/loggedUsers/filledExercises",
       controller : "myFilledExercises"
    }).when('/test/:name',{
    	templateUrl : function(params){

@@ -6,6 +6,7 @@ testsystem.controller('htmlExerciseController', function($scope, $routeParams, H
 				$scope.currentExercise = 0;
 			}
 			else{
+				
 				$scope.currentExercise = $scope.exercise.currentExercise;
 			}
 		})();
@@ -54,8 +55,9 @@ testsystem.controller('htmlExerciseController', function($scope, $routeParams, H
 					$scope.exercise.progess = $scope.progressBarWidth;
 
 					if($scope.currentExercise < $scope.exerciseLen){
-						$scope.currentExercise ++;
+						
 						if($scope.currentExercise < $scope.exerciseLen - 1){
+							$scope.currentExercise ++;
 							htmlEditor.getSession().setValue($scope.exercise.exercises[$scope.currentExercise].html);
 							cssEditor.getSession().setValue($scope.exercise.exercises[$scope.currentExercise].css); 
 						}

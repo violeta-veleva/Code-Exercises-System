@@ -11,7 +11,7 @@ testsystem.factory('HTMLExerciseService',function($http){
 			return $http.get('/allHTMLExercises?random=' + Math.random());
 		},
 		findUsersHTMLExercises : function(){
-			return $http.get('/users/getUsersHTMLExercises');
+			return $http.get('/loggedUsers/getUsersHTMLExercises');
 		},
 		findHTMLExerciseByName : function(name){
 			return $http.get('/htmlExercise/' + name);
@@ -36,7 +36,7 @@ testsystem.factory('HTMLExerciseService',function($http){
 		},
 		submitExercise : function(htmlExercise){
 			return $http({
-				url : "/users/submitHTMLExercise",
+				url : "/loggedUsers/submitHTMLExercise",
 				method : "POST",
 				data: {
 					htmlExercise : htmlExercise

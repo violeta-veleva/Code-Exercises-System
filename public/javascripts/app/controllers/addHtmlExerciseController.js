@@ -1,4 +1,4 @@
-testsystem.controller('addHtmlExerciseController', function($scope, HTMLExerciseService, ExerciseService, $timeout, notify){
+testsystem.controller('addHtmlExerciseController', function($scope, HTMLExerciseService, ExerciseService, ManageCoursesService, $timeout, notify){
 	function init(){
 		$scope.exercise = {
 			name : "",
@@ -77,7 +77,10 @@ testsystem.controller('addHtmlExerciseController', function($scope, HTMLExercise
 				$scope.currentExercise += 1;
 				$scope.updateEditors();
 			}
-	})
-console.log($scope.currentExercise);
-console.log($scope.exerciseCount);
+	});
+	$scope.findCoursesByDegree = function(degree){
+		ManageCoursesService.findCoursesByDegree(degree).success(function(data){
+			$scope.courses = data;
+		});
+	}
 })

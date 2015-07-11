@@ -22,6 +22,7 @@
       	<li ng-repeat="test in tests">
       		<a ng-href="#/test/{{test.name}}"> {{test.name}}</a>
           <p class="hashtag">#{{test.suitable}}</p>
+          <p ng-if="test.course" class="hashtag">For Course: {{test.course.name}}</p>
       	</li>
       </ul>
     </div><!-- /.box-body -->

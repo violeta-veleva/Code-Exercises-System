@@ -69,6 +69,7 @@
                               <a ng-href="#/htmlExercise/{{exercise.name}}"> {{exercise.name}}</a>
                             </span>
                             <p class="hashtag">#{{exercise.suitable}}</p>
+                            <p ng-if="exercise.course" class="hashtag">For Course: {{exercise.course.name}}</p>
                           </div>
                           <div class="col-xs-4">
                             <div class="tools" ng-if="editor">
@@ -118,6 +119,7 @@
                           <!-- list -->
                           <span class="text"><a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a></span>
                           <p class="hashtag">#{{exercise.suitable}}</p>
+                          <p ng-if="exercise.course" class="hashtag">For Course: {{exercise.course.name}}</p>
                         </div>
                         <div class="col-xs-4">
                           <div class="tools" ng-if="editor">
@@ -169,6 +171,7 @@
                           <!-- list -->
                           <span class="text"><a ng-href="#/test/{{test.name}}"> {{test.name}}</a></span>
                           <p class="hashtag">#{{test.suitable}}</p>
+                          <p ng-if="test.course" class="hashtag">For Course: {{test.course.name}}</p>
                         </div>
                         <div class="col-xs-4">
                           <div class="tools" ng-if="editor">

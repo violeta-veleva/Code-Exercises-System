@@ -15,7 +15,7 @@ testsystem.factory('TestService',function($http){
 				return $http.get('/test/' + name);
 			},
 			findUsersTests : function(){
-				return $http.get('/users/getUsersTests');
+				return $http.get('/loggedUsers/getUsersTests');
 			},
 			removeTest : function(id){
 				return $http({
@@ -56,7 +56,7 @@ testsystem.factory('TestService',function($http){
         	},
         	submitExercise : function(test){
 				return $http({
-					url : "/users/submitTestExercise",
+					url : "/loggedUsers/submitTestExercise",
 					method : "POST",
 					data: {
 						test : test

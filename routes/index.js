@@ -5,7 +5,7 @@ var Deferred = require('Deferred');
 //TODO: password encryption
 
 router.get('/', function(req,res){
-	
+	console.log(req.session.loggedIn)
 	res.render("index.ejs");
 });
 
@@ -55,7 +55,11 @@ router.post('/login', function(req,res){
 			res.status(401).send('invalid login information')
 		}
 	})
-})
+});
+
+router.get('/viewAllArticles', function(req,res){
+	res.render("viewAllArticles.ejs", {title: 'View All Articles'});
+});
 
 router.get('/viewAllArticles', function(req,res){
 	res.render("viewAllArticles.ejs", {title: 'View All Articles'});
@@ -99,6 +103,12 @@ router.get('/allCourses', function(req,res){
 
 router.get('/findCoursesByDegree/:degree', function(req,res){
 	req.db.collection('courses').find({degree : req.param("degree")}).toArray(function(err, courses){
+		res.send(courses);
+	});
+});
+
+router.get('/findCoursesByName', function(req,res){
+	req.db.collection('courses').find({name : req.session.loggedIn.course}).toArray(function(err, courses){
 		res.send(courses);
 	});
 });

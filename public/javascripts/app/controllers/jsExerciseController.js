@@ -49,8 +49,9 @@ testsystem.controller('jsExerciseController', function($scope, $routeParams, $ti
 					$scope.exercise.currentExercise = $scope.currentExercise;
 
 					if($scope.currentExercise < $scope.exerciseLen){
-						$scope.currentExercise ++;
+						
 						if($scope.currentExercise < $scope.exerciseLen - 1){
+							$scope.currentExercise ++;
 							JSEditor.getSession().setValue($scope.exercise.exercises[$scope.currentExercise].js);
 						}
 						$scope.progressbar();

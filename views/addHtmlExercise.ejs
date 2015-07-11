@@ -28,6 +28,19 @@
 							<option>Advanced</option>
 						</select>
 					</div>
+					<div class="form-group has-feedback">
+						<label for="degree">Degree</label>
+						<select id="degree" class="form-control" ng-model="exercise.course.degree" ng-change="findCoursesByDegree(exercise.course.degree)">
+							<option>Bachelor</option>
+							<option>Master</option>
+						</select>
+					</div>
+					<div class="form-group has-feedback">
+						<label for="course">Course</label>
+						<select id="course" ng-model="exercise.course.name"class="form-control">
+							<option ng-repeat="course in courses track by $index">{{course.name}}</option>
+						</select>
+					</div>
 					<h3>Item {{currentExercise + 1}}</h3>
 
 					<div class="form-group">
