@@ -71,9 +71,10 @@ db.collection('users').find().toArray(function(err, users){
 	}
 });
 
-/*db.collection('filledTests').remove({}, function(err, result){
+/*
+db.collection('users').remove({}, function(err, result){
 	if(err) throw err;
-	console.log("DELETED FILLED TESTS " + result);
+	console.log("DELETED FILLED USERS " + result);
 })
 
 db.collection('tests').remove({}, function(err, result){

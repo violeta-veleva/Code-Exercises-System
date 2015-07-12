@@ -14,12 +14,6 @@ router.get('/*', loginFilter);
 
 router.post('/*', loginFilter);
 
-router.get('/logout', function(req, res){
-	req.session.destroy(function(err){
-		res.redirect("/");
-	});
-})
-
 router.get('/confirmRemovingTest', function(req, res){
     res.render('confirmRemovingTest.ejs')
 })
@@ -207,25 +201,6 @@ router.post('/saveEditedRole', function(req, res){
 	});
 });
 
-function convertRows(type, row){
-	var object = undefined;
-	console.log(type)
-	switch(type) {
-		case 'tests' : {
-			object = {
-				name : row[0],
-				suitable : row[1],
-				article : row[2],
-				questionName : row[3],
-				answerName : row[4],
-				rightAnswer : row[5]
-			}
-			break;
-		}
-	}
-	return object;
-}
-
 router.post('/import', function(req,res){
 	console.log(req.body)
 	var types = {
@@ -278,30 +253,6 @@ router.post('/import', function(req,res){
 		if(err) throw err;
 		res.send('Data has been imported successfully');
 	});
-	// excelParser.parse({
-	//   inFile: path,
-	//   worksheet: 1
-	// }, function(err, rows){
-	// 	if(err) throw err;
-	// 	var colName = 'imported' + type;
-
-	// 	req.db.collection(colName).remove({}, function(err, result){
-	// 		console.log('previous imported data removed');
-	// 		var convertedRows = [];
-
-	// 		for(var i=0; i<rows.length; i++){
-	// 			convertedRows.push(convertRows(type,rows[i]));
-	// 		}
-
-	// 		req.db.collection(colName).insert(convertedRows, function(err, result){
-	// 			if(err) throw err;
-	// 			console.log('inserted');
-	// 		});
-	// 		res.send('ok')
-			
-	// 	});
-		
-	// });
 	
 });
 

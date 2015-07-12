@@ -13,8 +13,8 @@ testsystem.factory('HTMLExerciseService',function($http){
 		findUsersHTMLExercises : function(){
 			return $http.get('/loggedUsers/getUsersHTMLExercises');
 		},
-		findHTMLExerciseByName : function(name){
-			return $http.get('/htmlExercise/' + name);
+		findHTMLExerciseByName : function(name, action){
+			return $http.get('/htmlExercise/' + name + (action ? "?action=" + action : ""));
 		},
 		removeHTMLExercise : function(id){
 			return $http({

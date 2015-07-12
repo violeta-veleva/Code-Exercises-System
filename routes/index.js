@@ -193,10 +193,10 @@ function getTestByName(db,collection, name) {
 	return def.promise();
 }
 
-function getHtmlExercise(db,ObjectID, user, name) {
+function getHtmlExercise(db,ObjectID, user, name, action) {
 	var def = Deferred();
 	console.log("user", user);
-	if(user) {
+	if(user && !action) {
 		db.collection('filledHTMLExercises').findOne(
 			{
 				userId : user._id.toString(), 
@@ -220,10 +220,10 @@ function getHtmlExercise(db,ObjectID, user, name) {
 	return def.promise();
 }
 
-function getJSExercise(db,ObjectID, user, name) {
+function getJSExercise(db,ObjectID, user, name, action) {
 	var def = Deferred();
 	console.log("user", user);
-	if(user) {
+	if(user && action) {
 		db.collection('filledJSExercises').findOne(
 			{
 				userId : user._id.toString(), 
@@ -247,10 +247,10 @@ function getJSExercise(db,ObjectID, user, name) {
 	return def.promise();
 }
 
-function getTest(db, ObjectID, user, name) {
+function getTest(db, ObjectID, user, name, action) {
 	var def = Deferred();
 	console.log("user", user);
-	if(user) {
+	if(user && action) {
 		db.collection('filledTests').findOne(
 			{
 				userId : user._id.toString(), 
@@ -275,30 +275,27 @@ function getTest(db, ObjectID, user, name) {
 }
 
 router.get('/htmlExercise/:name', function(req,res){
-	//console.log("htmlExercise")
-	getHtmlExercise(req.db,req.ObjectID, req.session.loggedIn, req.params.name)
+	var action = req.param('action');
+
+	getHtmlExercise(req.db,req.ObjectID, req.session.loggedIn, req.params.name, action)
 	.done(function(exercise){	
 		res.send(exercise);
 	});
 });
 
 router.get('/jsExercise/:name', function(req,res){
-	//req.db.collection('jsExercises').findOne({name: req.params.name}, function(err, exercise){
-		//if (err) throw err;
-		//res.send(exercise);
-	//})
-	getJSExercise(req.db, req.ObjectID, req.session.loggedIn, req.params.name)
+	var action = req.param('action');
+
+	getJSExercise(req.db, req.ObjectID, req.session.loggedIn, req.params.name, action)
 	.done(function(exercise){	
 		res.send(exercise);
 	});
 });
 
 router.get('/test/:name', function(req,res){
-	//req.db.collection('tests').findOne({name: req.params.name}, function(err, test){
-		//if (err) throw err;
-		//res.send(test);
-	//})
-	getTest(req.db, req.ObjectID, req.session.loggedIn, req.params.name)
+	var action = req.param('action');
+
+	getTest(req.db, req.ObjectID, req.session.loggedIn, req.params.name, action)
 	.done(function(test){	
 		res.send(test);
 	});
