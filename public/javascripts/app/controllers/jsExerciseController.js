@@ -15,7 +15,7 @@ testsystem.controller('jsExerciseController', function($scope, $routeParams, $ti
 		$scope.exerciseLen = $scope.exercise.exercises.length;
 		
 		$scope.progressbar = function(){
-			$scope.progressBarWidth = parseInt(($scope.currentExercise / $scope.exerciseLen) * 100);
+			$scope.progressBarWidth = parseInt((($scope.currentExercise + 1) / $scope.exerciseLen) * 100);
 			$('.progress-bar').css('width', $scope.progressBarWidth + '%')
 		}
 		$scope.progressbar();
@@ -45,8 +45,7 @@ testsystem.controller('jsExerciseController', function($scope, $routeParams, $ti
 					$scope.isCorrect = true;
 					$scope.showMsgCorrect = true;
 					$scope.showMsgInCorrect = false;
-					//save the progress
-					$scope.exercise.currentExercise = $scope.currentExercise;
+					
 
 					if($scope.currentExercise < $scope.exerciseLen){
 						
@@ -54,6 +53,8 @@ testsystem.controller('jsExerciseController', function($scope, $routeParams, $ti
 							$scope.currentExercise ++;
 							JSEditor.getSession().setValue($scope.exercise.exercises[$scope.currentExercise].js);
 						}
+						//save the progress
+						$scope.exercise.currentExercise = $scope.currentExercise;
 						$scope.progressbar();
 					}
 					else if($scope.currentExercise === $scope.exerciseLen - 1){

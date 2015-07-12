@@ -19,10 +19,24 @@
     </div>
     <div class="box-body">
       <ul class="todo-list">
-      	<li ng-repeat="exercise in jsExercises">
-      		<a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a>
-          <p class="hashtag">#{{exercise.suitable}}</p>
-          <p ng-if="exercise.course" class="hashtag">For Course: {{exercise.course.name}}</p>
+      	<li ng-repeat="exercise in jsExercises track by $index">
+          <div class="row no-margin">
+            <div class="col-xs-8">
+              <a ng-href="#/jsExercise/{{exercise.name}}"> {{exercise.name}}</a>
+              <p class="hashtag">#{{exercise.suitable}}</p>
+              <p ng-if="exercise.course" class="hashtag">For Course: {{exercise.course.name}}</p>
+            </div>
+            <div class="col-xs-4">
+              <div class="tools" ng-if="editor">
+                <a ng-href="#/editJSExercise/{{exercise.name}}">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a href="" ng-click="confirmRemovingJSExercise(exercise, $index)">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </div>
+            </div>
+          </div>
       	</li>
       </ul>
     </div><!-- /.box-body -->

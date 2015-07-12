@@ -3,7 +3,7 @@ testsystem.factory('ImportService',function($http){
 		importExcel : function(importData) {
 			var fd = new FormData();
 			fd.append("type", importData.type);
-			fd.append("excel", new File([importData.file], "excel.xls"));
+			fd.append("excel", new File([importData.file], "import.json"));
 			return $http.post("/users/import", fd, {
 				transformRequest : angular.identify,
 				headers : {

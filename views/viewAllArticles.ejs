@@ -20,9 +20,23 @@
     <div class="box-body">
       <ul class="todo-list">
       	<li ng-repeat="test in tests">
-      		<a ng-href="#/test/{{test.name}}"> {{test.name}}</a>
-          <p class="hashtag">#{{test.suitable}}</p>
-          <p ng-if="test.course" class="hashtag">For Course: {{test.course.name}}</p>
+          <div class="row no-margin">
+            <div class="col-xs-8">
+              <a ng-href="#/test/{{test.name}}"> {{test.name}}</a>
+              <p class="hashtag">#{{test.suitable}}</p>
+              <p ng-if="test.course" class="hashtag">For Course: {{test.course.name}}</p>
+            </div>
+            <div class="col-xs-4">
+              <div class="tools" ng-if="editor">
+                <a ng-href="#/edittest/{{test.name}}" ng-click="editTest(test)">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a href="" ng-click="confirmRemovingTest(test, $index)">
+                  <i class="fa fa-trash-o"></i>
+                </a>
+              </div>
+            </div>
+          </div>
       	</li>
       </ul>
     </div><!-- /.box-body -->

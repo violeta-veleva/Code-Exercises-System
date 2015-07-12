@@ -11,7 +11,7 @@ testsystem.factory('ManageCoursesService', function($http){
 			return $http.get('/allCourses');
 		},
 		findCoursesByDegree : function(degree) {
-			return $http.get('/findCoursesByDegree/'+degree);
+			return $http.get('/findCoursesByDegree/'+ degree);
 		},
 		removeCourse : function(id){
 			return $http({

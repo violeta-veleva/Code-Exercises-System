@@ -73,6 +73,10 @@ router.get('/viewAllJSExercises', function(req,res){
 	res.render("viewAllJSExercises.ejs", {title: 'View All HTML Exercises'});
 });
 
+router.get('/exercisesForCourse', function(req,res){
+	res.render("exercisesForCourse.ejs", {title: 'View All Exercises For Course'});
+});
+
 router.get('/404', function(req,res){
 	res.render("404.ejs");
 });
@@ -115,6 +119,24 @@ router.get('/findCoursesByName', function(req,res){
 
 router.get('/htmlExercise', function(req, res){
 	res.render('htmlExercise.ejs');
+});
+
+router.get('/findHTMLExercisesByCourseName/:course', function(req,res){
+	req.db.collection('htmlExercises').find({"course.name" : req.param("course")}).toArray(function(err, htmlExercises){
+		res.send(htmlExercises);
+	});
+});
+
+router.get('/findJSExercisesByCourseName/:course', function(req,res){
+	req.db.collection('jsExercises').find({"course.name" : req.param("course")}).toArray(function(err, jsExercises){
+		res.send(jsExercises);
+	});
+});
+
+router.get('/findTestsByCourseName/:course', function(req,res){
+	req.db.collection('tests').find({"course.name" : req.param("course")}).toArray(function(err, tests){
+		res.send(tests);
+	});
 });
 
 router.get('/jsExercise', function(req, res){

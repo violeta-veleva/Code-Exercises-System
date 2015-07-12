@@ -1,6 +1,7 @@
 testsystem.controller('htmlExerciseController', function($scope, $routeParams, HTMLExerciseService, $timeout, notify){
 	HTMLExerciseService.findHTMLExerciseByName($routeParams.name).success(function(data){
 		$scope.exercise = data;
+		console.log(data);
 		(function(){
 			if($scope.exercise.currentExercise == 'undefined' || $scope.exercise.currentExercise == undefined){
 				$scope.currentExercise = 0;
@@ -14,7 +15,7 @@ testsystem.controller('htmlExerciseController', function($scope, $routeParams, H
 		$scope.exerciseLen = $scope.exercise.exercises.length;
 		
 		$scope.progressbar = function(){
-			$scope.progressBarWidth = parseInt(($scope.currentExercise / $scope.exerciseLen) * 100);	
+			$scope.progressBarWidth = parseInt((($scope.currentExercise + 1) / $scope.exerciseLen) * 100);	
 			$('.progress-bar').css('width', $scope.progressBarWidth + '%')
 		}
 		$scope.progressbar();
@@ -50,9 +51,6 @@ testsystem.controller('htmlExerciseController', function($scope, $routeParams, H
 					$scope.isCorrect = true;
 					$scope.showMsgCorrect = true;
 					$scope.showMsgInCorrect = false;
-					//save the progress
-					$scope.exercise.currentExercise = $scope.currentExercise;
-					$scope.exercise.progess = $scope.progressBarWidth;
 
 					if($scope.currentExercise < $scope.exerciseLen){
 						
@@ -61,8 +59,12 @@ testsystem.controller('htmlExerciseController', function($scope, $routeParams, H
 							htmlEditor.getSession().setValue($scope.exercise.exercises[$scope.currentExercise].html);
 							cssEditor.getSession().setValue($scope.exercise.exercises[$scope.currentExercise].css); 
 						}
-						$scope.progressbar();
+
 					}
+					//save the progress
+					$scope.exercise.currentExercise = $scope.currentExercise;
+					$scope.exercise.progess = $scope.progressBarWidth;
+					$scope.progressbar();
 				}
 				else{
 					$scope.showMsgInCorrect = true;
