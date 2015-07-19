@@ -7,8 +7,8 @@
  		<a href="https://nodejs.org/download" target="_blank">Node JS</a>
  	</li>
  	<li>
--		<a href="https://www.mongodb.org/downloads">Mongo DB</a>
-+		<a href="https://www.mongodb.org/downloads" target="_blank">Mongo DB</a>
+		<a href="https://www.mongodb.org/downloads">Mongo DB</a>
+		<a href="https://www.mongodb.org/downloads" target="_blank">Mongo DB</a>
  	</li>
  </ul>
  
@@ -28,9 +28,7 @@
 			node server
  	</li>
  </ul>
-+##
+##
 
-
-
-Стартирайте приложението - влизате в директорията на проектал. Пишете команда node.server
+Стартирайте приложението - влизате в директорията на проектал. Пишете команда node server
 
